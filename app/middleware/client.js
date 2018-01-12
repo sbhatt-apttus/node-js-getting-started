@@ -9,7 +9,7 @@
         console.log('########## => '+requestXML);
         var response = beautifyYourCode(requestXML);
         console.log('########## => '+response);
-		res.send(response);
+		res.send({"finalXML":response});
     }
 
     function beautifyYourCode(requestXML){
@@ -31,7 +31,7 @@
         createXML(abc,(soObjectString) => { 
             
             console.log('##########1 => '+soObjectString);
-            res.send(soObjectString);        
+            res.send({"finalXML":soObjectString});        
             debugger;
         });
 
