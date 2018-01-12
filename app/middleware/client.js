@@ -27,6 +27,125 @@
 		res.send(response);
     }
 
+    function convertJSMAP(customSettingResultReceived2,jsMAP ) {
+        
+        console.log("customSettingResultReceived2 ==> "+customSettingResultReceived2);
+        console.log(Object.entries(customSettingResultReceived2));
+        console.log(Object.keys(customSettingResultReceived2).length);
+        var myMap2 = new Map();
+        var myMap3 = new Map();
+        Object.keys(customSettingResultReceived2).forEach(function (key){
+    
+            console.log("KEY ==> "+key);
+            console.log("VALUE ==> "+customSettingResultReceived2[key]);
+            console.log("LABEL ==> "+customSettingResultReceived2[key].APTS_Label__c);
+            myMap2.set(key,customSettingResultReceived2[key]);
+                
+          });
+        
+        localStorage.setItem('customSettingResultReceived2', JSON.stringify(Array.from(myMap2.entries()))  );
+    
+        jsMAP(myMap2);
+    }
+
+    function generateXMLMap(inputMap,jsMAP1 ) {
+        debugger;
+        console.log(Object.entries(inputMap));
+        console.log(Object.keys(inputMap).length);
+        if(inputMap){
+    
+    
+            var myMap2 = new Map();
+            
+              var mapKeys = Array.from( inputMap.keys() );
+              for(var a=0;a<mapKeys.length;a++){
+            
+                
+                var keyStr = mapKeys[a];
+                if(keyStr){
+                
+                    console.log("generateXMLMap KEY ==> "+keyStr );
+                    console.log("generateXMLMap VALUE ==> "+inputMap.get(keyStr));        
+    
+                    var replaceQuotRegex = new RegExp('&'+'qu'+'ot;', 'g');
+                    var abc = inputMap.get(keyStr).replace( replaceQuotRegex,'"');
+                    
+                    console.log('***************** generateXMLMap STRING => ' + abc);
+                    
+                    console.log('***************** generateXMLMap STRING PARSE => ' + JSON.parse(abc) );
+                    
+                    createXML(abc,(soObjectString) => { 
+                        
+                        myMap2.set(keyStr,soObjectString );
+                        debugger;
+                    });
+                
+                }              
+                
+              }
+            
+    
+              debugger;
+              jsMAP1(myMap2);
+    
+    
+        
+        
+        }
+                      
+    }
+
+
+
+    function createXML(jsonString,jsMAP2){
+        
+        debugger;
+        var obj1 = JSON.parse( jsonString.replace(/&quot;/g,'"') );
+        
+        
+        var soObjectString = '';
+        var recordsLen = Object.keys(obj1.records).length;
+    
+    
+        for(a=0; a<recordsLen; a++){
+        
+            soObjectString = soObjectString+'<sObjects xsi:type="'+obj1.records[a].attributes.type+'">'
+            map = obj1.records[a];
+        
+            Object.keys(map).forEach(function (key){
+        
+              if(key != 'attributes' && key != 'Id' && map[key] ){
+      
+                if(key.includes("__InstanceUrl__c") && t_instanceURL){
+                    soObjectString += '<'+ key +'>'+t_instanceURL+'</'+ key +'>';
+                //else if(){
+                    
+                }else{
+                    soObjectString += '<'+ key +'>'+map[key]+'</'+ key +'>';
+                }
+                  
+                
+        
+              }
+              
+              
+                  
+        });
+        
+        soObjectString = soObjectString+'</sObjects>';
+        
+        
+        
+        }
+    
+        console.log(soObjectString);
+        jsMAP2(soObjectString);
+    
+    }
+    
+
+
+
 
     function JSONTOXML(responseMapToSerialize4,checkAndGetCustomSettingsFromSourceORGCallBack){
 
