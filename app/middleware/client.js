@@ -6,6 +6,7 @@
 
     function getAllClients(req, res) {
         var requestXML = req.body.XML;
+        console.log('########## => '+requestXML);
         var response = beautifyYourCode(requestXML);
         console.log('########## => '+response);
 		res.send(response);
@@ -20,8 +21,8 @@
     function getJSONTOXML(req, res) {
         var responseMapToSerialize4 = req.body.JSON;
         var masterXML = '';
-
-        var response = JSONTOXML(requestXML);
+        console.log('########## => '+responseMapToSerialize4);
+        var response = JSONTOXML(responseMapToSerialize4);
         console.log('########## => '+response);
 		res.send(response);
     }
