@@ -5,7 +5,12 @@
     var vkbeautify        = require('vkbeautify');
 
     function getAllClients(req, res) {
+        console.log('########## => '+req);
+        console.log('########## => '+req.body);
+        console.log('########## => '+req.body.XML);
+
         var requestXML = req.body.XML;
+
         console.log('########## => '+requestXML);
         var response = beautifyYourCode(requestXML);
         console.log('########## => '+response);
