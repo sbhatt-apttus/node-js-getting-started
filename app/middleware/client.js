@@ -52,21 +52,13 @@
         for(var a=0; a<recordsLen; a++){
         
             soObjectString = soObjectString+'<sObjects xsi:type="'+obj1.records[a].attributes.type+'">'
-            map = obj1.records[a];
+            var map = obj1.records[a];
         
             Object.keys(map).forEach(function (key){
         
               if(key != 'attributes' && key != 'Id' && map[key] ){
       
-                if(key.includes("__InstanceUrl__c") && t_instanceURL){
-                    soObjectString += '<'+ key +'>'+t_instanceURL+'</'+ key +'>';
-                //else if(){
-                    
-                }else{
                     soObjectString += '<'+ key +'>'+map[key]+'</'+ key +'>';
-                }
-                  
-                
         
               }
               
