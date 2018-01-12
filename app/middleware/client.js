@@ -21,80 +21,22 @@
     function getJSONTOXML(req, res) {
         var responseMapToSerialize4 = req.body.JSON;
         var masterXML = '';
-        console.log('########## => '+responseMapToSerialize4);
-        var response = JSONTOXML(responseMapToSerialize4);
-        console.log('########## => '+response);
-		res.send(response);
-    }
+        console.log('##########0 => '+responseMapToSerialize4);
 
-    function convertJSMAP(customSettingResultReceived2,jsMAP ) {
-        
-        console.log("customSettingResultReceived2 ==> "+customSettingResultReceived2);
-        console.log(Object.entries(customSettingResultReceived2));
-        console.log(Object.keys(customSettingResultReceived2).length);
-        var myMap2 = new Map();
-        var myMap3 = new Map();
-        Object.keys(customSettingResultReceived2).forEach(function (key){
-    
-            console.log("KEY ==> "+key);
-            console.log("VALUE ==> "+customSettingResultReceived2[key]);
-            console.log("LABEL ==> "+customSettingResultReceived2[key].APTS_Label__c);
-            myMap2.set(key,customSettingResultReceived2[key]);
-                
-          });
-        
-        localStorage.setItem('customSettingResultReceived2', JSON.stringify(Array.from(myMap2.entries()))  );
-    
-        jsMAP(myMap2);
-    }
+        responseMapToSerialize4 = '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"Apttus_XApps__XAuthorForExcelSystemProperties__c","url":"/services/data/v39.0/sobjects/Apttus_XApps__XAuthorForExcelSystemProperties__c/a5A1N000000IEU4UAO"},"Id":"a5A1N000000IEU4UAO","Name":"System Properties","Apttus_XApps__InstanceUrl__c":"https://na78.salesforce.com","Apttus_XApps__LicenseWebserviceEndpoint__c":"https://ls.apttus.net:8443/cgi-bin/LicenseServer/Bin/LSCGI.exe","Apttus_XApps__MergeCallTimeoutMillis__c":50000.0,"APTS_Ext_ID__c":"a5A1N000000IEU4UAO"}]}';
 
-    function generateXMLMap(inputMap,jsMAP1 ) {
-        debugger;
-        console.log(Object.entries(inputMap));
-        console.log(Object.keys(inputMap).length);
-        if(inputMap){
-    
-    
-            var myMap2 = new Map();
-            
-              var mapKeys = Array.from( inputMap.keys() );
-              for(var a=0;a<mapKeys.length;a++){
-            
-                
-                var keyStr = mapKeys[a];
-                if(keyStr){
-                
-                    console.log("generateXMLMap KEY ==> "+keyStr );
-                    console.log("generateXMLMap VALUE ==> "+inputMap.get(keyStr));        
-    
-                    var replaceQuotRegex = new RegExp('&'+'qu'+'ot;', 'g');
-                    var abc = inputMap.get(keyStr).replace( replaceQuotRegex,'"');
-                    
-                    console.log('***************** generateXMLMap STRING => ' + abc);
-                    
-                    console.log('***************** generateXMLMap STRING PARSE => ' + JSON.parse(abc) );
-                    
-                    createXML(abc,(soObjectString) => { 
-                        
-                        myMap2.set(keyStr,soObjectString );
-                        debugger;
-                    });
-                
-                }              
-                
-              }
-            
-    
-              debugger;
-              jsMAP1(myMap2);
-    
-    
-        
-        
-        }
-                      
-    }
+        var replaceQuotRegex = new RegExp('&'+'qu'+'ot;', 'g');
+        var abc = responseMapToSerialize4.replace( replaceQuotRegex,'"');
 
+        createXML(abc,(soObjectString) => { 
+            
+            console.log('##########1 => '+soObjectString);
+            res.send(soObjectString);        
+            debugger;
+        });
+
+        console.log('##########2 END => ');
+    }
 
 
     function createXML(jsonString,jsMAP2){
@@ -143,56 +85,6 @@
     
     }
     
-
-
-
-
-    function JSONTOXML(responseMapToSerialize4,checkAndGetCustomSettingsFromSourceORGCallBack){
-
-        convertJSMAP(responseMapToSerialize4,(myMap2) => {
-            debugger;
-            console.log('convertJSMAP CALLED ***************** responseMapToSerialize2   => ' + myMap2);
-            console.log('##convertJSMAP CALLED1 ***************** responseMapToSerialize2   => ' +Object.keys(myMap2).length);
-            
-            
-            convertJSMAP(responseMapToSerialize3,(myMap3) => {
-                console.log('convertJSMAP myMap3  CALLED ***************** responseMapToSerialize3   => ' + myMap3);
-                console.log('##convertJSMAP CALLED2 ***************** responseMapToSerialize2   => ' +Object.keys(myMap3).length);
-                
-                debugger;
-                generateXMLMap(myMap3,(myMap4) => {
-
-                    console.log("@@##$$$%% myMap4 ==> ");
-                    
-                    if(myMap4){
-                          var myMap2 = new Map();
-                          var mapKeys = Array.from( myMap4.keys() );
-            
-                          for(var a=0;a<mapKeys.length;a++){
-                            var keyStr = mapKeys[a];
-                            if(keyStr){
-                                console.log("@@##$$$%% generateXMLMap KEY ==> "+keyStr );
-                                console.log("@@##$$$%% generateXMLMap VALUE ==> "+myMap4.get(keyStr));
-                                masterXML += myMap4.get(keyStr);
-                            }              
-                            
-                          }
-                    
-                    }                        
-            
-                    checkAndGetCustomSettingsFromSourceORGCallBack(masterXML);
-                    
-                });
-                console.log('convertJSMAP myMap4  CALLED ***************** myMap4  XML ERROR => ' + myMap4 );                            
-                console.log('##convertJSMAP CALLED4 ***************** responseMapToSerialize2   => ' +Object.keys(myMap4).length);
-            });
-            
-            
-        });
-
-
-    }
-
     var client = {
         getAllClients: getAllClients,
         getJSONTOXML:getJSONTOXML
