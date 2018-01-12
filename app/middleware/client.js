@@ -49,7 +49,7 @@
         var recordsLen = Object.keys(obj1.records).length;
     
     
-        for(a=0; a<recordsLen; a++){
+        for(var a=0; a<recordsLen; a++){
         
             soObjectString = soObjectString+'<sObjects xsi:type="'+obj1.records[a].attributes.type+'">'
             map = obj1.records[a];
