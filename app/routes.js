@@ -14,5 +14,7 @@ module.exports = function(app) {
 	/*Client*/
 	var client = require('./middleware/client');
 	app.get('/api/clients', client.getAllClients);
+	app.get('/api/getXML', client.getJSONTOXML);
+
 	
 };
