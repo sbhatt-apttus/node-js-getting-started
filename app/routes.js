@@ -15,6 +15,8 @@ module.exports = function(app) {
 	var client = require('./middleware/client');
 	app.post('/api/clients', client.getAllClients);
 	app.post('/api/getXML', client.getJSONTOXML);
+	app.post('/api/getBeautifyXMLFromJSON', client.getBeautifyXMLFromJSON);
 
+	
 	
 };

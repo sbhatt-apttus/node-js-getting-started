@@ -4,6 +4,32 @@
     var env = process.env.NODE_ENV || 'development';
     var vkbeautify        = require('vkbeautify');
 
+    function getBeautifyXMLFromJSON(req, res) {
+        console.log('########## req => '+req);
+        console.log('########## req.body=> '+req.body);
+        console.log('########## JSON.stringify(req.body) => '+JSON.stringify(req.body));
+        
+        console.log('########## => req.body.jsonString => '+req.body.jsonString);
+
+        var requestXML = req.body.jsonString;
+
+        console.log('########## requestXML => '+requestXML);
+       
+        var replaceQuotRegex = new RegExp('&'+'qu'+'ot;', 'g');
+        var abc = requestXML.replace( replaceQuotRegex,'"');
+
+        createXML(abc,(soObjectString) => { 
+            
+            console.log('##########1 soObjectString=> '+soObjectString);
+            var response = beautifyYourCode(soObjectString);
+            console.log('########## response => '+response);
+            res.send({"finalXML":response});
+        });
+
+        console.log('##########2 END => ');        
+    }
+
+
     function getAllClients(req, res) {
         console.log('########## => '+req);
         console.log('########## => '+req.body);
@@ -89,7 +115,8 @@
     
     var client = {
         getAllClients: getAllClients,
-        getJSONTOXML:getJSONTOXML
+        getJSONTOXML:getJSONTOXML,
+        getBeautifyXMLFromJSON:getBeautifyXMLFromJSON
     };
 
     module.exports = client;
