@@ -4,6 +4,50 @@
     var env = process.env.NODE_ENV || 'development';
     var vkbeautify        = require('vkbeautify');
 
+    //FINAL BLUKIFY API CALL FOR LIST OF JSON STRINGS
+    // INPUT => jsonStringList
+    // OUTPUT => finalXMLList
+    function getBulkifiedBeautifyXMLFromJSON(req, res) {
+        console.log('########## req => '+req);
+        console.log('########## req.body=> '+req.body);
+        console.log('########## JSON.stringify(req.body) => '+JSON.stringify(req.body));
+        
+        console.log('########## => req.body.jsonStringList => '+req.body.jsonStringList);
+
+        var requestJsonStringList = req.body.jsonStringList;
+
+        var jsonStringListLen = requestJsonStringList.length;
+
+        console.log('########## => jsonStringListLen => '+jsonStringListLen);
+
+        var finalXMLList = [];
+        
+        for (var i = 0; i < jsonStringListLen; i++) {
+
+
+            console.log('########## requestJsonStringList[i] => '+requestJsonStringList[i]);
+            
+             var replaceQuotRegex = new RegExp('&'+'qu'+'ot;', 'g');
+             var abc = requestJsonStringList[i].replace( replaceQuotRegex,'"');
+     
+             createXML(abc,(soObjectString) => { 
+                 
+                 console.log('##########1 soObjectString=> '+soObjectString);
+                 var response = beautifyYourCode(soObjectString);
+                 console.log('########## response => '+response);
+                 finalXMLList.push(response); 
+                 
+             });
+
+
+        }
+
+        res.send({"finalXML":finalXMLList});
+        console.log('##########2 END => ');        
+    }
+
+
+
     function getBeautifyXMLFromJSON(req, res) {
         console.log('########## req => '+req);
         console.log('########## req.body=> '+req.body);
@@ -116,7 +160,8 @@
     var client = {
         getAllClients: getAllClients,
         getJSONTOXML:getJSONTOXML,
-        getBeautifyXMLFromJSON:getBeautifyXMLFromJSON
+        getBeautifyXMLFromJSON:getBeautifyXMLFromJSON,
+        getBulkifiedBeautifyXMLFromJSON:getBulkifiedBeautifyXMLFromJSON
     };
 
     module.exports = client;
