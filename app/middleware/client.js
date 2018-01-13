@@ -42,7 +42,7 @@
 
         }
 
-        res.send({"finalXML":finalXMLList});
+        res.send({"finalXMLList":finalXMLList});
         console.log('##########2 END => ');        
     }
 
