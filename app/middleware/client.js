@@ -138,8 +138,16 @@
         
               if(key != 'attributes' && key != 'Id' && map[key] ){
       
-                    soObjectString += '<'+ key +'>'+map[key]+'</'+ key +'>';
-        
+                    //soObjectString += '<'+ key +'>'+map[key]+'</'+ key +'>';
+
+                    if(map[key] !== null && typeof map[key] === 'object'){
+                        var objId = '<'+ key+'.Id' +'>'+map[key].Id+'</'+ key+'.Id' +'>';
+                        var objName = '<'+ key+'.Name' +'>'+map[key].Name+'</'+ key+'.Name' +'>';
+                        soObjectString += objId+objName;
+                    }else{
+                        
+                        soObjectString += '<'+ key +'>'+map[key]+'</'+ key +'>';
+                    }                     
               }
               
               
