@@ -37,8 +37,10 @@
              //var abc = requestJsonStringList[i].replace( replaceQuotRegex,'"');
      
              COBJECT_DESCRIBE_CALL(requestJsonStringList[i],Endpoint,sourcesessionID,finalXMLList,(soObjectString) => { 
-                 
-                 //console.log('##########1 soObjectString=> '+soObjectString);
+                
+                console.log('##########1333dgsdgsdgsgd soObjectString=> '+JSON.stringify(soObjectString));
+                res.send({"validAPINamesMap":soObjectString});
+                /* //console.log('##########1 soObjectString=> '+soObjectString);
                  if(soObjectString){
                     //finalXMLList.set(requestJsonStringList[i],soObjectString);
                     indexx ++;
@@ -57,7 +59,7 @@
                     finallyyy = true;
                     console.log('##########1333dgsdgsdgsgd soObjectString=> '+JSON.stringify(soObjectString));
                     res.send({"validAPINamesMap":soObjectString});
-                }
+                }*/
 
                   
              });
@@ -66,11 +68,11 @@
         }
 
         //res.send({"validAPINamesMap":finalXMLList});
-        if(finallyyy){
+        /*if(finallyyy){
             //res.send({"validAPINamesMap":finalXMLList});
             console.log('##########2 END finallyyyfinallyyyfinallyyyfinallyyy => '); 
         }
-        console.log('##########2 END => ');        
+        console.log('##########2 END => '); */       
     }
 
 
