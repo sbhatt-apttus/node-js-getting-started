@@ -4,6 +4,7 @@
     var env = process.env.NODE_ENV || 'development';
     var vkbeautify        = require('vkbeautify');
     var $ = require('jquery');
+    var request = require('request');
 
     //FINAL BLUKIFY API CALL FOR LIST OF Custom Setting Objects
     // INPUT => validAPINamesSet,Endpoint,sourcesessionID
@@ -59,7 +60,7 @@
 
     function COBJECT_DESCRIBE_CALL(jsonString,Endpoint,sourcesessionID,jsMAP2){
         
-        $.ajax({ 
+        /*$.ajax({ 
             url: Endpoint,
             type: 'GET',
             beforeSend: function(xhr) { 
@@ -71,7 +72,26 @@
         }).error(function(err) {
             console.log(err);
             jsMAP2(null);
-        });	        
+        });	*/
+        
+        request({
+            url: Endpoint,
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + sourcesessionID,  // <--Very important!!!
+            }
+        }, function (error, response, body){
+            if(response){
+                console.log('### SUCCESSSSSSSSSSSSSSSSS=> '+response);
+                jsMAP2(response);
+            }
+            if(error){
+                console.log(error);
+                jsMAP2(null);
+            }
+           
+        });    
+
  
         console.log('ENDEDDDDD');
         
