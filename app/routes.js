@@ -17,6 +17,8 @@ module.exports = function(app) {
 	app.post('/api/getXML', client.getJSONTOXML);
 	app.post('/api/getBeautifyXMLFromJSON', client.getBeautifyXMLFromJSON);
 	app.post('/api/getBulkifiedBeautifyXMLFromJSON', client.getBulkifiedBeautifyXMLFromJSON);
+	app.post('/api/getBulkified_COBJECT_DESCRIBE', client.getBulkified_COBJECT_DESCRIBE);
+	
 	
 
 	

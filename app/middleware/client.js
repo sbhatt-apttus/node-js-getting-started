@@ -4,6 +4,85 @@
     var env = process.env.NODE_ENV || 'development';
     var vkbeautify        = require('vkbeautify');
 
+    //FINAL BLUKIFY API CALL FOR LIST OF Custom Setting Objects
+    // INPUT => validAPINamesSet,Endpoint,sourcesessionID
+    // OUTPUT => validAPINamesMap
+    function getBulkified_COBJECT_DESCRIBE(req, res) {
+        console.log('########## req => '+req);
+        console.log('########## req.body=> '+req.body);
+        console.log('########## JSON.stringify(req.body) => '+JSON.stringify(req.body));
+        
+        console.log('########## => req.body.validAPINamesSet => '+req.body.validAPINamesSet);
+        console.log('########## => req.body.Endpoint => '+req.body.Endpoint);
+        console.log('########## => req.body.sourcesessionID => '+req.body.sourcesessionID);
+
+        var requestJsonStringList = req.body.validAPINamesSet;
+        var Endpoint = req.body.Endpoint;
+        var sourcesessionID = req.body.sourcesessionID;
+
+        var jsonStringListLen = requestJsonStringList.length;
+
+        console.log('########## => jsonStringListLen => '+jsonStringListLen);
+
+        var finalXMLList = new Map();
+        
+        for (var i = 0; i < jsonStringListLen; i++) {
+
+
+            console.log('########## requestJsonStringList[i] => '+requestJsonStringList[i]);
+            
+             //var replaceQuotRegex = new RegExp('&'+'qu'+'ot;', 'g');
+             //var abc = requestJsonStringList[i].replace( replaceQuotRegex,'"');
+     
+             COBJECT_DESCRIBE_CALL(requestJsonStringList[i],Endpoint,sourcesessionID,(soObjectString) => { 
+                 
+                 console.log('##########1 soObjectString=> '+soObjectString);
+                 if(soObjectString){
+                    finalXMLList.set(requestJsonStringList[i],soObjectString);
+                 }else{
+                    console.log('##########1 soObjectString=>  ERRORRRRRR');
+                 }
+                  
+             });
+
+
+        }
+
+        res.send({"validAPINamesMap":finalXMLList});
+        console.log('##########2 END => ');        
+    }
+
+
+
+
+
+    function COBJECT_DESCRIBE_CALL(jsonString,Endpoint,sourcesessionID,jsMAP2){
+        
+        $.ajax({ 
+            url: Endpoint,
+            type: 'GET',
+            beforeSend: function(xhr) { 
+                xhr.setRequestHeader("Authorization", "Bearer " + sourcesessionID);
+            }
+        }).done(function(response) {
+            console.log('### SUCCESSSSSSSSSSSSSSSSS=> '+response);
+            jsMAP2(response);
+        }).error(function(err) {
+            console.log(err);
+            jsMAP2(null);
+        });	        
+ 
+        console.log('ENDEDDDDD');
+        
+    
+    }
+
+
+
+
+
+
+
     //FINAL BLUKIFY API CALL FOR LIST OF JSON STRINGS
     // INPUT => jsonStringList
     // OUTPUT => finalXMLList
@@ -169,7 +248,8 @@
         getAllClients: getAllClients,
         getJSONTOXML:getJSONTOXML,
         getBeautifyXMLFromJSON:getBeautifyXMLFromJSON,
-        getBulkifiedBeautifyXMLFromJSON:getBulkifiedBeautifyXMLFromJSON
+        getBulkifiedBeautifyXMLFromJSON:getBulkifiedBeautifyXMLFromJSON,
+        getBulkified_COBJECT_DESCRIBE:getBulkified_COBJECT_DESCRIBE
     };
 
     module.exports = client;
