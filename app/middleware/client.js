@@ -104,8 +104,8 @@
         }, function (error, response, body){
             if(response){
                 console.log('### SUCCESSSSSSSSSSSSSSSSS=> '+response);
-                finalXMLList.set(jsonString,response);
-                jsMAP2(finalXMLList);
+                //finalXMLList.set(jsonString,response);
+                jsMAP2(response);
             }
             if(error){
                 console.log(error);
