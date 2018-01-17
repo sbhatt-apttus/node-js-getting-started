@@ -3,6 +3,7 @@
 
     var env = process.env.NODE_ENV || 'development';
     var vkbeautify        = require('vkbeautify');
+    var $ = require('jquery');
 
     //FINAL BLUKIFY API CALL FOR LIST OF Custom Setting Objects
     // INPUT => validAPINamesSet,Endpoint,sourcesessionID
