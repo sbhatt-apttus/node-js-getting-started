@@ -42,12 +42,16 @@
                  if(soObjectString){
                     finalXMLList.set(requestJsonStringList[i],soObjectString);
                     indexx ++;
+                    console.log('##########1333 soObjectString=> '+soObjectString);
+                    console.log('##########1333 soObjectString=> '+JSON.stringify(soObjectString));
+                    
                  }else{
                     console.log('##########1 soObjectString=>  ERRORRRRRR');
                  }
 
                  console.log('##########4 END CALLLLLLLLLLLL => '+indexx);
                  console.log('##########5 END CALLLLLLLLLLLL => '+jsonStringListLen);
+                 
                 if( indexx ===  jsonStringListLen ){
                     console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL => ');
                     finallyyy = true;
