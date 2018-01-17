@@ -36,13 +36,13 @@
              //var replaceQuotRegex = new RegExp('&'+'qu'+'ot;', 'g');
              //var abc = requestJsonStringList[i].replace( replaceQuotRegex,'"');
      
-             COBJECT_DESCRIBE_CALL(requestJsonStringList[i],Endpoint,sourcesessionID,(soObjectString) => { 
+             COBJECT_DESCRIBE_CALL(requestJsonStringList[i],Endpoint,sourcesessionID,finalXMLList,(soObjectString) => { 
                  
                  //console.log('##########1 soObjectString=> '+soObjectString);
                  if(soObjectString){
-                    finalXMLList.set(requestJsonStringList[i],soObjectString);
+                    //finalXMLList.set(requestJsonStringList[i],soObjectString);
                     indexx ++;
-                    console.log('##########1333 soObjectString=> '+soObjectString);
+                    console.log('##########1333 999999 soObjectString=> ');
                     //console.log('##########1333 soObjectString=> '+JSON.stringify(soObjectString));
                     
                  }else{
@@ -55,8 +55,8 @@
                 if( indexx ===  jsonStringListLen ){
                     console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL => ');
                     finallyyy = true;
-                    console.log('##########1333dgsdgsdgsgd soObjectString=> '+JSON.stringify(finalXMLList));
-                    res.send({"validAPINamesMap":finalXMLList});
+                    console.log('##########1333dgsdgsdgsgd soObjectString=> '+JSON.stringify(soObjectString));
+                    res.send({"validAPINamesMap":soObjectString});
                 }
 
                   
@@ -77,7 +77,7 @@
 
 
 
-    function COBJECT_DESCRIBE_CALL(jsonString,Endpoint,sourcesessionID,jsMAP2){
+    function COBJECT_DESCRIBE_CALL(jsonString,Endpoint,sourcesessionID,finalXMLList,jsMAP2){
         
         /*$.ajax({ 
             url: Endpoint,
@@ -94,7 +94,7 @@
         });	*/
         
         request({
-            url: Endpoint,
+            url: Endpoint+'/services/data/v39.0/sobjects/'+jsonString+'/describe',
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + sourcesessionID,  // <--Very important!!!
@@ -102,7 +102,8 @@
         }, function (error, response, body){
             if(response){
                 console.log('### SUCCESSSSSSSSSSSSSSSSS=> '+response);
-                jsMAP2(response);
+                finalXMLList.set(jsonString,response);
+                jsMAP2(finalXMLList);
             }
             if(error){
                 console.log(error);
