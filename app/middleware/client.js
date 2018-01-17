@@ -28,18 +28,21 @@
 
         var finalXMLList = new Map();
         var finallyyy = false;
-        //for (var i = 0; i < jsonStringListLen; i++) {
+        var finalllList = [];
+        for (var i = 0; i < jsonStringListLen; i++) {
 
             var indexx = 0;
-            console.log('########## requestJsonStringList[i] => '+requestJsonStringList[0]);
+            console.log('########## requestJsonStringList[i] => '+requestJsonStringList[i]);
             
              //var replaceQuotRegex = new RegExp('&'+'qu'+'ot;', 'g');
              //var abc = requestJsonStringList[i].replace( replaceQuotRegex,'"');
      
-             COBJECT_DESCRIBE_CALL(requestJsonStringList[0],Endpoint,sourcesessionID,finalXMLList,(soObjectString) => { 
+             COBJECT_DESCRIBE_CALL(requestJsonStringList[i],Endpoint,sourcesessionID,finalXMLList,(soObjectString) => { 
                 
-                console.log('##########1333dgsdgsdgsgd soObjectString=> '+JSON.stringify(soObjectString));
-                res.send({"validAPINamesMap":soObjectString});
+                console.log('##########1333dgsdgsdgsgd 0 soObjectString=> '+indexx);
+                console.log('##########1333dgsdgsdgsgd 1 soObjectString=> '+soObjectString);
+                finalllList[indexx] = soObjectString;
+                //res.send({"validAPINamesMap":soObjectString});
                 /* //console.log('##########1 soObjectString=> '+soObjectString);
                  if(soObjectString){
                     //finalXMLList.set(requestJsonStringList[i],soObjectString);
@@ -52,20 +55,20 @@
                  }
 
                  console.log('##########4 END CALLLLLLLLLLLL => '+indexx);
-                 console.log('##########5 END CALLLLLLLLLLLL => '+jsonStringListLen);
+                 console.log('##########5 END CALLLLLLLLLLLL => '+jsonStringListLen);*/
 
                 if( indexx ===  jsonStringListLen ){
                     console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL => ');
                     finallyyy = true;
-                    console.log('##########1333dgsdgsdgsgd soObjectString=> '+JSON.stringify(soObjectString));
-                    res.send({"validAPINamesMap":soObjectString});
-                }*/
+                    console.log('##########1333dgsdgsdgsgd 3 soObjectString=> '+JSON.stringify(finalllList));
+                    res.send({"validAPINamesMap":finalllList});
+                }
 
                   
              });
 
 
-        //}
+        }
 
         //res.send({"validAPINamesMap":finalXMLList});
         /*if(finallyyy){
