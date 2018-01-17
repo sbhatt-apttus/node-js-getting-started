@@ -30,7 +30,7 @@
         
         for (var i = 0; i < jsonStringListLen; i++) {
 
-
+            var indexx = 0;
             console.log('########## requestJsonStringList[i] => '+requestJsonStringList[i]);
             
              //var replaceQuotRegex = new RegExp('&'+'qu'+'ot;', 'g');
@@ -41,14 +41,15 @@
                  console.log('##########1 soObjectString=> '+soObjectString);
                  if(soObjectString){
                     finalXMLList.set(requestJsonStringList[i],soObjectString);
+                    indexx ++;
                  }else{
                     console.log('##########1 soObjectString=>  ERRORRRRRR');
                  }
 
-                 console.log('##########4 END CALLLLLLLLLLLL => '+i);
-                 console.log('##########5 END CALLLLLLLLLLLL => '+(jsonStringListLen -1));
-                if( i ===  (jsonStringListLen -1) ){
-                    console.log('##########3 END CALLLLLLLLLLLL => ');
+                 console.log('##########4 END CALLLLLLLLLLLL => '+indexx);
+                 console.log('##########5 END CALLLLLLLLLLLL => '+jsonStringListLen);
+                if( i ===  jsonStringListLen ){
+                    console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL => ');
                     res.send({"validAPINamesMap":finalXMLList});
                 }
 
