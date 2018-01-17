@@ -45,6 +45,8 @@
                     console.log('##########1 soObjectString=>  ERRORRRRRR');
                  }
 
+                 console.log('##########4 END CALLLLLLLLLLLL => '+i);
+                 console.log('##########5 END CALLLLLLLLLLLL => '+(jsonStringListLen -1));
                 if( i ===  (jsonStringListLen -1) ){
                     console.log('##########3 END CALLLLLLLLLLLL => ');
                     res.send({"validAPINamesMap":finalXMLList});
@@ -56,7 +58,7 @@
 
         }
 
-        res.send({"validAPINamesMap":finalXMLList});
+        //res.send({"validAPINamesMap":finalXMLList});
         console.log('##########2 END => ');        
     }
 
