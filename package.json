@@ -22,7 +22,8 @@
     "jshint-loader": "^0.8.3",
     "json-loader": "^0.5.4",
     "method-override": "~2.0.2",
-    "vkbeautify": "^0.99.3"
+    "vkbeautify": "^0.99.3",
+    "request": "^2.83.0"
   },
   "devDependencies": {
     "request": "^2.83.0",
