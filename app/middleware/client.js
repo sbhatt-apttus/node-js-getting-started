@@ -27,7 +27,7 @@
         console.log('########## => jsonStringListLen => '+jsonStringListLen);
 
         var finalXMLList = new Map();
-        
+        var finallyyy = false;
         for (var i = 0; i < jsonStringListLen; i++) {
 
             var indexx = 0;
@@ -48,9 +48,10 @@
 
                  console.log('##########4 END CALLLLLLLLLLLL => '+indexx);
                  console.log('##########5 END CALLLLLLLLLLLL => '+jsonStringListLen);
-                if( i ===  jsonStringListLen ){
+                if( indexx ===  jsonStringListLen ){
                     console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL => ');
-                    res.send({"validAPINamesMap":finalXMLList});
+                    finallyyy = true;
+                    //res.send({"validAPINamesMap":finalXMLList});
                 }
 
                   
@@ -60,6 +61,9 @@
         }
 
         //res.send({"validAPINamesMap":finalXMLList});
+        if(finallyyy){
+            res.send({"validAPINamesMap":finalXMLList});
+        }
         console.log('##########2 END => ');        
     }
 
