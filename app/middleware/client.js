@@ -51,7 +51,7 @@
                 if( indexx ===  jsonStringListLen ){
                     console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL => ');
                     finallyyy = true;
-                    //res.send({"validAPINamesMap":finalXMLList});
+                    res.send({"validAPINamesMap":finalXMLList});
                 }
 
                   
@@ -62,7 +62,8 @@
 
         //res.send({"validAPINamesMap":finalXMLList});
         if(finallyyy){
-            res.send({"validAPINamesMap":finalXMLList});
+            //res.send({"validAPINamesMap":finalXMLList});
+            console.log('##########2 END finallyyyfinallyyyfinallyyyfinallyyy => '); 
         }
         console.log('##########2 END => ');        
     }
