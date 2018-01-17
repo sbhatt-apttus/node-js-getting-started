@@ -42,6 +42,7 @@
                 console.log('##########1333dgsdgsdgsgd 0 soObjectString=> '+indexx);
                 console.log('##########1333dgsdgsdgsgd 1 soObjectString=> '+soObjectString);
                 finalllList[indexx] = soObjectString;
+                indexx ++;
                 //res.send({"validAPINamesMap":soObjectString});
                 /* //console.log('##########1 soObjectString=> '+soObjectString);
                  if(soObjectString){
@@ -52,15 +53,15 @@
                     
                  }else{
                     console.log('##########1 soObjectString=>  ERRORRRRRR');
-                 }
+                 }*/
 
-                 console.log('##########4 END CALLLLLLLLLLLL => '+indexx);
-                 console.log('##########5 END CALLLLLLLLLLLL => '+jsonStringListLen);*/
+                 console.log('##########4 END CALLLLLLLLLLLL  2=> '+indexx);
+                 console.log('##########5 END CALLLLLLLLLLLL  3 => '+jsonStringListLen);
 
                 if( indexx ===  jsonStringListLen ){
                     console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL => ');
                     finallyyy = true;
-                    console.log('##########1333dgsdgsdgsgd 3 soObjectString=> '+JSON.stringify(finalllList));
+                    console.log('##########1333dgsdgsdgsgd 4 soObjectString=> '+JSON.stringify(finalllList));
                     res.send({"validAPINamesMap":finalllList});
                 }
 
