@@ -19,11 +19,18 @@
         console.log('########## JSON.stringify(req.body) => '+JSON.stringify(req.body));
         
         console.log('########## => req.body.validAPINamesSet => '+req.body.validAPINamesSet);
+        console.log('########## => req.body.validAPINamesSet => '+req.body.validAPINameToFieldsStringMap);
         console.log('########## => req.body.Endpoint => '+req.body.Endpoint);
         console.log('########## => req.body.sourcesessionID => '+req.body.sourcesessionID);
         console.log('########## => req.body.APIType => '+req.body.APIType);
 
-        var requestJsonStringList = req.body.validAPINamesSet;
+        var requestJsonStringList;
+        if(req.body.APIType == 'DESCRIBE'){
+            requestJsonStringList = req.body.validAPINamesSet;
+        }else{
+            requestJsonStringList = req.body.validAPINameToFieldsStringMap;
+        }
+        
         var Endpoint = req.body.Endpoint;
         var sourcesessionID = req.body.sourcesessionID;
         var APIType = req.body.APIType;
