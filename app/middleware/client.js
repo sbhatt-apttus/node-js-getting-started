@@ -10,7 +10,7 @@
     var COBJECT_DESCRIBE_QUERY = '/services/data/v39.0/sobjects/';
 
     //FINAL BLUKIFY API CALL FOR LIST OF Custom Setting Objects
-    // INPUT IF APIType == 'EXPORT' => validAPINameToFieldsStringMap => APIName & Fields,Endpoint,sourcesessionID
+    // INPUT IF APIType == 'EXPORT' => validAPINamesSet (validAPINameToFieldsStringMap => APIName & Fields),Endpoint,sourcesessionID
     // INPUT IF APIType == 'DESCRIBE' => validAPINamesSet =>String,Endpoint,sourcesessionID
     // OUTPUT => validAPINamesMap
     function getBulkified_COBJECT_DESCRIBE(req, res) {
@@ -132,7 +132,11 @@
                 //finalXMLList.set(jsonString,response);
                 var objj;
                 if(response.body && response.statusCode == '200' ){
-                    objj = {"APIName":jsonString,"Body":response.body};
+                    if(APIType == 'DESCRIBE'){
+                        objj = {"APIName":jsonString,"Body":response.body};
+                    }else{
+                        objj = {"APIName":jsonString.APIName,"Body":response.body};
+                    }
                 }else{
                     objj = {"APIName":jsonString,"Body":response.body};
                 }
