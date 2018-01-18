@@ -121,7 +121,7 @@
         }else{
             var APIName = jsonString.APIName;
             var queryFields = jsonString.Fields;
-            var queryString1 = 'select id,Name,'+ queryFields +' from '+APIName;
+            var queryString1 = 'select id,Name,CreatedBy.Id,CreatedBy.Name,CreatedDate,LastModifiedBy.Name,LastModifiedBy.Id,LastModifiedDate,'+ queryFields +' from '+APIName;
             API_CALL_URL = Endpoint+EXPORT_QUERY+encode_utf8(queryString1);
         }
 
