@@ -12,6 +12,7 @@
     //FINAL BLUKIFY API CALL FOR LIST OF Custom Setting Objects
     // INPUT IF APIType == 'EXPORT' => validAPINamesSet (validAPINameToFieldsStringMap => APIName & Fields),Endpoint,sourcesessionID
     // INPUT IF APIType == 'DESCRIBE' => validAPINamesSet =>String,Endpoint,sourcesessionID
+    // CALL_FROM => FOR_EXPORT FOR_IMPORT
     // OUTPUT => validAPINamesMap
     function getBulkified_COBJECT_DESCRIBE(req, res) {
         console.log('########## req => '+req);
@@ -23,6 +24,7 @@
         console.log('########## => req.body.Endpoint => '+req.body.Endpoint);
         console.log('########## => req.body.sourcesessionID => '+req.body.sourcesessionID);
         console.log('########## => req.body.APIType => '+req.body.APIType);
+        console.log('########## => req.body.CALL_FROM => '+req.body.CALL_FROM);
 
         var requestJsonStringList;
         if(req.body.APIType == 'DESCRIBE'){
@@ -30,7 +32,10 @@
         }else{
             requestJsonStringList = req.body.validAPINameToFieldsStringMap;
         }
-        
+    
+        var CALL_FROM = req.body.CALL_FROM;
+
+
         var Endpoint = req.body.Endpoint;
         var sourcesessionID = req.body.sourcesessionID;
         var APIType = req.body.APIType;
@@ -50,7 +55,7 @@
              //var replaceQuotRegex = new RegExp('&'+'qu'+'ot;', 'g');
              //var abc = requestJsonStringList[i].replace( replaceQuotRegex,'"');
      
-             COBJECT_DESCRIBE_CALL(requestJsonStringList[i],Endpoint,sourcesessionID,APIType,(soObjectString) => { 
+             COBJECT_DESCRIBE_CALL(requestJsonStringList[i],Endpoint,sourcesessionID,APIType,CALL_FROM,(soObjectString) => { 
                 
                 console.log('##########1333dgsdgsdgsgd 0 soObjectString=> '+indexx);
                 console.log('##########1333dgsdgsdgsgd 1 soObjectString=> '+soObjectString);
@@ -97,7 +102,7 @@
 
 
 
-    function COBJECT_DESCRIBE_CALL(jsonString,Endpoint,sourcesessionID,APIType,jsMAP2){
+    function COBJECT_DESCRIBE_CALL(jsonString,Endpoint,sourcesessionID,APIType,CALL_FROM,jsMAP2){
         
         /*$.ajax({ 
             url: Endpoint,
@@ -121,7 +126,14 @@
         }else{
             var APIName = jsonString.APIName;
             var queryFields = jsonString.Fields;
-            var queryString1 = 'select id,Name,CreatedBy.Id,CreatedBy.Name,CreatedDate,LastModifiedBy.Name,LastModifiedBy.Id,LastModifiedDate,'+ queryFields +' from '+APIName;
+            var queryString1 = '';
+            if(req.body.CALL_FROM == 'FOR_EXPORT'){
+                queryString1 = 'select id,Name,CreatedBy.Id,CreatedBy.Name,CreatedDate,LastModifiedBy.Name,LastModifiedBy.Id,LastModifiedDate,'+ queryFields +' from '+APIName;
+            }else{
+                queryString1 = 'select id,Name,'+ queryFields +' from '+APIName;
+            }    
+    
+            //var queryString1 = 'select id,Name,CreatedBy.Id,CreatedBy.Name,CreatedDate,LastModifiedBy.Name,LastModifiedBy.Id,LastModifiedDate,'+ queryFields +' from '+APIName;
             API_CALL_URL = Endpoint+EXPORT_QUERY+encode_utf8(queryString1);
         }
 
