@@ -127,7 +127,7 @@
             var APIName = jsonString.APIName;
             var queryFields = jsonString.Fields;
             var queryString1 = '';
-            if(req.body.CALL_FROM == 'FOR_EXPORT'){
+            if(CALL_FROM == 'FOR_EXPORT'){
                 queryString1 = 'select id,Name,CreatedBy.Id,CreatedBy.Name,CreatedDate,LastModifiedBy.Name,LastModifiedBy.Id,LastModifiedDate,'+ queryFields +' from '+APIName;
             }else{
                 queryString1 = 'select id,Name,'+ queryFields +' from '+APIName;
