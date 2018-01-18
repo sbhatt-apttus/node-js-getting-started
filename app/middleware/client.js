@@ -5,9 +5,13 @@
     var vkbeautify        = require('vkbeautify');
     var $ = require('jquery');
     var request = require('request');
+    var TOOLING_QUERY = '/services/data/v39.0/tooling/query/?q=';
+    var EXPORT_QUERY = '/services/data/v39.0/query/?q=';
+    var COBJECT_DESCRIBE_QUERY = '/services/data/v39.0/sobjects/';
 
     //FINAL BLUKIFY API CALL FOR LIST OF Custom Setting Objects
-    // INPUT => validAPINamesSet,Endpoint,sourcesessionID
+    // INPUT IF APIType == 'EXPORT' => validAPINameToFieldsStringMap => APIName & Fields,Endpoint,sourcesessionID
+    // INPUT IF APIType == 'DESCRIBE' => validAPINamesSet =>String,Endpoint,sourcesessionID
     // OUTPUT => validAPINamesMap
     function getBulkified_COBJECT_DESCRIBE(req, res) {
         console.log('########## req => '+req);
@@ -17,10 +21,12 @@
         console.log('########## => req.body.validAPINamesSet => '+req.body.validAPINamesSet);
         console.log('########## => req.body.Endpoint => '+req.body.Endpoint);
         console.log('########## => req.body.sourcesessionID => '+req.body.sourcesessionID);
+        console.log('########## => req.body.APIType => '+req.body.APIType);
 
         var requestJsonStringList = req.body.validAPINamesSet;
         var Endpoint = req.body.Endpoint;
         var sourcesessionID = req.body.sourcesessionID;
+        var APIType = req.body.APIType;
 
         var jsonStringListLen = requestJsonStringList.length;
 
@@ -37,7 +43,7 @@
              //var replaceQuotRegex = new RegExp('&'+'qu'+'ot;', 'g');
              //var abc = requestJsonStringList[i].replace( replaceQuotRegex,'"');
      
-             COBJECT_DESCRIBE_CALL(requestJsonStringList[i],Endpoint,sourcesessionID,(soObjectString) => { 
+             COBJECT_DESCRIBE_CALL(requestJsonStringList[i],Endpoint,sourcesessionID,APIType,(soObjectString) => { 
                 
                 console.log('##########1333dgsdgsdgsgd 0 soObjectString=> '+indexx);
                 console.log('##########1333dgsdgsdgsgd 1 soObjectString=> '+soObjectString);
@@ -84,7 +90,7 @@
 
 
 
-    function COBJECT_DESCRIBE_CALL(jsonString,Endpoint,sourcesessionID,jsMAP2){
+    function COBJECT_DESCRIBE_CALL(jsonString,Endpoint,sourcesessionID,APIType,jsMAP2){
         
         /*$.ajax({ 
             url: Endpoint,
@@ -100,8 +106,22 @@
             jsMAP2(null);
         });	*/
         
+        //Lets create APICALL URL   sourceInstanceURL+EXPORT_QUERY+EncodingUtil.urlEncode(queryString1, 'UTF-8')
+        var API_CALL_URL = '';
+        console.log('### COBJECT_DESCRIBE_CALL  APIType => '+APIType);
+        if(APIType == 'DESCRIBE'){
+            API_CALL_URL = Endpoint+COBJECT_DESCRIBE_QUERY+jsonString+'/describe';
+        }else{
+            var APIName = jsonString.APIName;
+            var queryFields = jsonString.Fields;
+            var queryString1 = 'select id,Name,'+ queryFields +' from '+APIName;
+            API_CALL_URL = Endpoint+EXPORT_QUERY+encode_utf8(queryString1);
+        }
+
+        console.log('### COBJECT_DESCRIBE_CALL  API_CALL_URL => '+API_CALL_URL);
+
         request({
-            url: Endpoint+'/services/data/v39.0/sobjects/'+jsonString+'/describe',
+            url: API_CALL_URL,
             method: "GET",
             headers: {
                 "Authorization": "Bearer " + sourcesessionID,  // <--Very important!!!
@@ -114,7 +134,7 @@
                 if(response.body && response.statusCode == '200' ){
                     objj = {"APIName":jsonString,"Body":response.body};
                 }else{
-                    objj = {"APIName":jsonString,"Body":response};
+                    objj = {"APIName":jsonString,"Body":response.body};
                 }
                 
                 jsMAP2(objj);
@@ -134,7 +154,13 @@
 
 
 
-
+    function encode_utf8(s) {
+        return unescape(encodeURIComponent(s));
+      }
+      
+      function decode_utf8(s) {
+        return decodeURIComponent(escape(s));
+      }
 
 
 
