@@ -37,11 +37,12 @@
              //var replaceQuotRegex = new RegExp('&'+'qu'+'ot;', 'g');
              //var abc = requestJsonStringList[i].replace( replaceQuotRegex,'"');
      
-             COBJECT_DESCRIBE_CALL(requestJsonStringList[i],Endpoint,sourcesessionID,finalXMLList,(soObjectString) => { 
+             COBJECT_DESCRIBE_CALL(requestJsonStringList[i],Endpoint,sourcesessionID,(soObjectString) => { 
                 
                 console.log('##########1333dgsdgsdgsgd 0 soObjectString=> '+indexx);
                 console.log('##########1333dgsdgsdgsgd 1 soObjectString=> '+soObjectString);
-                finalllList[indexx] = soObjectString;
+                //finalllList[indexx] = soObjectString;
+                finalllList.push(soObjectString);
                 indexx ++;
                 //res.send({"validAPINamesMap":soObjectString});
                 /* //console.log('##########1 soObjectString=> '+soObjectString);
@@ -83,7 +84,7 @@
 
 
 
-    function COBJECT_DESCRIBE_CALL(jsonString,Endpoint,sourcesessionID,finalXMLList,jsMAP2){
+    function COBJECT_DESCRIBE_CALL(jsonString,Endpoint,sourcesessionID,jsMAP2){
         
         /*$.ajax({ 
             url: Endpoint,
@@ -109,7 +110,14 @@
             if(response){
                 console.log('### SUCCESSSSSSSSSSSSSSSSS=> '+response);
                 //finalXMLList.set(jsonString,response);
-                jsMAP2(response);
+                var objj;
+                if(response.body && response.statusCode == '200' ){
+                    objj = {"APIName":jsonString,"Body":response.body};
+                }else{
+                    objj = {"APIName":jsonString,"Body":response};
+                }
+                
+                jsMAP2(objj);
             }
             if(error){
                 console.log(error);
