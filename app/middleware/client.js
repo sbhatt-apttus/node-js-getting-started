@@ -9,6 +9,130 @@
     var EXPORT_QUERY = '/services/data/v39.0/query/?q=';
     var COBJECT_DESCRIBE_QUERY = '/services/data/v39.0/sobjects/';
 
+
+    //FINAL BLUKIFY API CALL FOR CUSTOM SETTING RESTORE ( IMPORT /DELETE )
+    // INPUT => endPoint,sessionID,List<String> importXml, SOAPAction (IMPORT XML STRING)
+    // OUTPUT => finalOUTPUT => String => success/fail
+    function doImportAPICall(req, res) {
+        console.log('########## req => '+req);
+        console.log('########## req.body=> '+req.body);
+        console.log('########## JSON.stringify(req.body) => '+JSON.stringify(req.body));
+        
+        console.log('########## => req.body.instanceURL => '+req.body.endPoint);
+        console.log('########## => req.body.sessionID => '+req.body.sessionID);
+        console.log('########## => req.body.importXml => '+req.body.importXml);
+        console.log('########## => req.body.SOAPAction => '+req.body.SOAPAction);
+
+    
+        var importXmlList = req.body.importXml;
+        var endPoint = req.body.endPoint;
+        var sessionID = req.body.sessionID;
+        var SOAPAction = req.body.SOAPAction;
+
+
+        var importXmlListLen = importXmlList.length;
+
+        console.log('########## => importXmlListLen => '+importXmlListLen);
+
+        var finallyyy = false;
+        var finalllList = [];
+
+        for (var i = 0; i < importXmlListLen; i++) {
+
+            var indexx = 0;
+            console.log('########## importXmlList[i] => '+importXmlList[i]);
+
+     
+            IMPORT_XML_CALL(importXmlList[i],endPoint,sessionID,SOAPAction,(OUTPUT) => { 
+                
+                console.log('##########1333dgsdgsdgsgd 0 IMPORT_XML_CALL indexx => '+indexx); 
+                console.log('##########1333dgsdgsdgsgd 1 IMPORT_XML_CALL OUTPUT => '+OUTPUT);
+                finalllList.push(OUTPUT);
+                indexx ++;
+
+                 console.log('##########4 END CALLLLLLLLLLLL  2=> '+indexx);
+                 console.log('##########5 END CALLLLLLLLLLLL  3 => '+importXmlListLen);
+
+                if( indexx ===  importXmlListLen ){
+                    console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL => ');
+                    if( !!finalllList.reduce(function(a, b){ return (a === b) ? a : NaN; }) ){
+                        finallyyy = true;
+                    }
+                    console.log('##########1333dgsdgsdgsgd 4 finalllList=> '+JSON.stringify(finalllList));
+                    console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
+                    res.send({"finalOUTPUT":finallyyy});
+                }
+
+                  
+             });
+
+
+        }
+
+     
+    }
+
+
+
+
+
+    function IMPORT_XML_CALL(finalBody,finalEndpoint,sessionID,SOAPAction,jsMAP2){
+
+        console.log('### IMPORT_XML_CALL 1  finalBody => '+finalBody);
+        console.log('### IMPORT_XML_CALL 2  finalEndpoint => '+finalEndpoint);
+        console.log('### IMPORT_XML_CALL 3  sessionID => '+sessionID);
+        console.log('### IMPORT_XML_CALL 4  SOAPAction => '+SOAPAction);
+
+        request({
+            url: finalEndpoint,
+            method: "POST",
+            headers: {
+                "Authorization": "Bearer " + sessionID,  
+                "Content-Type": "text/xml",
+                "SOAPAction": SOAPAction,
+            },
+            body: finalBody
+        }, function (error, response, body){
+            if(response){
+                console.log('### SUCCESSSSSSSSSSSSSSSSS=> '+response);
+                //finalXMLList.set(jsonString,response);
+                var objj = false;
+                if(response.body && response.statusCode == '200' ){
+                    console.log(' FIANLLYYYYYYY SUCCESSS with 200');
+                    objj = true;
+                }else{
+                    console.log(' FIANLLYYYYYYY SUCCESSS with '+response.statusCode);
+                    objj = false;
+                }
+                
+                jsMAP2(objj);
+            }
+            if(error){
+                console.log(' FIANLLYYYYYYY error with ');
+                console.log(error);
+                jsMAP2(null);
+            }
+           
+        });    
+
+ 
+        console.log('ENDEDDDDD');
+        
+    
+    }
+
+
+
+
+
+
+
+
+
+
+// _____________________________________________________________________________________________________________________________
+
+
     //FINAL BLUKIFY API CALL FOR LIST OF Custom Setting Objects
     // INPUT IF APIType == 'EXPORT' => validAPINamesSet (validAPINameToFieldsStringMap => APIName & Fields),Endpoint,sourcesessionID
     // INPUT IF APIType == 'DESCRIBE' => validAPINamesSet =>String,Endpoint,sourcesessionID
@@ -353,7 +477,8 @@
         getJSONTOXML:getJSONTOXML,
         getBeautifyXMLFromJSON:getBeautifyXMLFromJSON,
         getBulkifiedBeautifyXMLFromJSON:getBulkifiedBeautifyXMLFromJSON,
-        getBulkified_COBJECT_DESCRIBE:getBulkified_COBJECT_DESCRIBE
+        getBulkified_COBJECT_DESCRIBE:getBulkified_COBJECT_DESCRIBE,
+        doImportAPICall,doImportAPICall
     };
 
     module.exports = client;
