@@ -3,6 +3,7 @@
 
     var env = process.env.NODE_ENV || 'development';
     var vkbeautify        = require('vkbeautify');
+    var parseString = require('xml2js').parseString;
     var $ = require('jquery');
     var request = require('request');
     var TOOLING_QUERY = '/services/data/v39.0/tooling/query/?q=';
@@ -96,6 +97,14 @@
             if(response){
                 console.log('### SUCCESSSSSSSSSSSSSSSSS=> '+JSON.stringify(response) );
                 //finalXMLList.set(jsonString,response);
+                if(response && response.body){
+                    var xml = response.body;
+                    parseString(xml, function (err, result) {
+                        console.log('IN PARSING......');
+                        console.dir(result);
+                    });
+                }
+
                 var objj = false;
                 if(response.body && response.statusCode == '200' ){
                     console.log(' FIANLLYYYYYYY SUCCESSS with 200');
