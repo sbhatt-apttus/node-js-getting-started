@@ -99,9 +99,11 @@
                 //finalXMLList.set(jsonString,response);
                 if(response && response.body){
                     var xml = response.body;
-                    parseString(xml, function (err, result) {
+                    parseString(xml,  {charkey: 'textContent'}, function(err, result) {
                         console.log('IN PARSING......');
-                        console.dir(result);
+                        console.log(JSON.stringify(result));
+                        console.log(result.element.textContent);
+                        console.log(JSON.stringify(result.element.textContent));
                     });
                 }
 
