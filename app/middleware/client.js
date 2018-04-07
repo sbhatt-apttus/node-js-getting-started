@@ -102,8 +102,10 @@
                     parseString(xml,  {charkey: 'textContent'}, function(err, result) {
                         console.log('IN PARSING......');
                         console.log(JSON.stringify(result));
-                        console.log(result.element.textContent);
-                        console.log(JSON.stringify(result.element.textContent));
+                        console.log(  getText(result.element)  );
+                        console.log(JSON.stringify(  getText(result.element)  ));
+                        //console.log(result.element.textContent);
+                        //console.log(JSON.stringify(result.element.textContent));
                     });
                 }
 
@@ -133,7 +135,10 @@
     }
 
 
-
+    var getText = function(elt) {
+        if (typeof(elt) === 'string') return elt;
+        if (typeof(elt) === 'object' && elt.hasOwnProperty('_')) return elt._;
+    }
 
 
 
