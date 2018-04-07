@@ -102,12 +102,18 @@
                     parseString(xml,  {charkey: 'textContent'}, function(err, result) {
                         console.log('IN PARSING......');
                         console.log(JSON.stringify(result));
-                        console.log(JSON.stringify(result.element));
+/*                        console.log(JSON.stringify(result.element));
                         console.log(  getText(result)  );
                         console.log(JSON.stringify(  getText(result)  ));
                         console.log(result.get('soapenv:Body')  );
                         //console.log(result.element.textContent);
-                        //console.log(JSON.stringify(result.element.textContent));
+                        //console.log(JSON.stringify(result.element.textContent));*/
+                        for (var prop in result) {
+                            console.log(  prop  );
+                            console.log(  obj[prop]  );
+                            console.log(JSON.stringify(obj[prop]));
+                        }
+
                     });
                 }
 
