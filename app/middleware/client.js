@@ -94,7 +94,6 @@
             body: finalBody
         }, function (error, response, body){
             if(response){
-                JSON.stringify(req.body)
                 console.log('### SUCCESSSSSSSSSSSSSSSSS=> '+JSON.stringify(response) );
                 //finalXMLList.set(jsonString,response);
                 var objj = false;
