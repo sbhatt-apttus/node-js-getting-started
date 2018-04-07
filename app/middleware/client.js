@@ -94,7 +94,8 @@
             body: finalBody
         }, function (error, response, body){
             if(response){
-                console.log('### SUCCESSSSSSSSSSSSSSSSS=> '+response);
+                JSON.stringify(req.body)
+                console.log('### SUCCESSSSSSSSSSSSSSSSS=> '+JSON.stringify(response) );
                 //finalXMLList.set(jsonString,response);
                 var objj = false;
                 if(response.body && response.statusCode == '200' ){
