@@ -110,8 +110,8 @@
                         //console.log(JSON.stringify(result.element.textContent));*/
                         for (var prop in result) {
                             console.log(  prop  );
-                            console.log(  obj[prop]  );
-                            console.log(JSON.stringify(obj[prop]));
+                            console.log(  result[prop]  );
+                            console.log(JSON.stringify(result[prop]));
                         }
 
                     });
