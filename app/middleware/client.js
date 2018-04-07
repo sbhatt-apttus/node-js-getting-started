@@ -112,6 +112,35 @@
                             console.log(  prop  );
                             console.log(  result[prop]  );
                             console.log(JSON.stringify(result[prop]));
+
+                            var res1 = result[prop];
+
+                            for (var prop in res1) {
+                                console.log(  prop  );
+                                if( prop == 'soapenv:Body'){
+                                    console.log(  res1[prop]  );
+                                    console.log(  res1[prop][0]  );
+                                    var res2 = res1[prop][0];
+
+
+                                    for (var prop in res2) {
+                                        console.log(  prop  );
+                                        if( prop == 'soapenv:Fault'){
+                                            console.log(  res2[prop]  );
+                                            console.log(  res2[prop][0]  );
+                                            var res2 = res2[prop][0];
+                                        }
+                                        
+                                        //console.log(JSON.stringify(res1[prop]));
+                                    }
+
+
+                                }
+                                
+                                //console.log(JSON.stringify(res1[prop]));
+                            }
+
+
                         }
 
                     });
