@@ -96,56 +96,6 @@
         }, function (error, response, body){
             if(response){
                 console.log('### SUCCESSSSSSSSSSSSSSSSS=> '+JSON.stringify(response) );
-                //finalXMLList.set(jsonString,response);
-                if(response && response.body){
-                    var xml = response.body;
-                    parseString(xml,  {charkey: 'textContent'}, function(err, result) {
-                        console.log('IN PARSING......');
-                        console.log(JSON.stringify(result));
-/*                        console.log(JSON.stringify(result.element));
-                        console.log(  getText(result)  );
-                        console.log(JSON.stringify(  getText(result)  ));
-                        console.log(result.get('soapenv:Body')  );
-                        //console.log(result.element.textContent);
-                        //console.log(JSON.stringify(result.element.textContent));*/
-                        for (var prop in result) {
-                            console.log(  prop  );
-                            console.log(  result[prop]  );
-                            console.log(JSON.stringify(result[prop]));
-
-                            var res1 = result[prop];
-
-                            for (var prop in res1) {
-                                console.log(  prop  );
-                                if( prop == 'soapenv:Body'){
-                                    console.log(  res1[prop]  );
-                                    console.log(  res1[prop][0]  );
-                                    var res2 = res1[prop][0];
-
-
-                                    for (var prop in res2) {
-                                        console.log(  prop  );
-                                        if( prop == 'soapenv:Fault'){
-                                            console.log(  res2[prop]  );
-                                            console.log(  res2[prop][0]  );
-                                            var res2 = res2[prop][0];
-                                        }
-                                        
-                                        //console.log(JSON.stringify(res1[prop]));
-                                    }
-
-
-                                }
-                                
-                                //console.log(JSON.stringify(res1[prop]));
-                            }
-
-
-                        }
-
-                    });
-                }
-
                 var objj = false;
                 if(response.body && response.statusCode == '200' ){
                     console.log(' FIANLLYYYYYYY SUCCESSS with 200');
@@ -172,10 +122,10 @@
     }
 
 
-    var getText = function(elt) {
+    /*var getText = function(elt) {
         if (typeof(elt) === 'string') return elt;
         if (typeof(elt) === 'object' && elt.hasOwnProperty('_')) return elt._;
-    }
+    }*/
 
 
 
