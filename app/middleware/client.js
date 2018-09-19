@@ -96,15 +96,27 @@
         var finallyyy = false;
 		
 		  var url = './public/CPQWebService.xml';
-		  var args = {CartId: CartId};
+          var args = {"CartId": CartId};
+          var soapHeader = {"SessionHeader": sessionID};
 		  soap.createClient(url, function(err, client) {
-			  //console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL => ' + client);
-			  client.updatePriceForCart(args, function(err, result) {
-				  console.log(result);
+              console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL1 => ' + url);
+			  console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL2 => ' + err);
+              //console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL2 => ' + client);
+              debugger;
+              client.updatePriceForCart(args, function(err, result, rawResponse, soapHeader, rawRequest) {
+                // result is a javascript object
+                // rawResponse is the raw xml response string
+                // soapHeader is the response soap header as a javascript object
+                // rawRequest is the raw xml request string
+                console.log(result);
+                console.log(rawResponse);
+                console.log(rawRequest);
 				console.log('##########1333dgsdgsdgsgd 4 finalllList=> '+JSON.stringify(result));
 				console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
-				res.send({"finalOUTPUT":finallyyy});				  
-			  });
+				res.send({"finalOUTPUT":finallyyy});                
+            });              
+
+
 		  });
 		     
     }
