@@ -225,7 +225,7 @@
  <service name="CPQWebServiceService">
   <documentation></documentation>
   <port binding="tns:CPQWebServiceBinding" name="CPQWebService">
-   <soap:address location="https://ap4.salesforce.com/services/Soap/class/Apttus_CPQApi/CPQWebService"/>
+   <soap:address location="https://box--cpqdata.cs69.my.salesforce.com/services/Soap/class/Apttus_CPQApi/CPQWebService"/>
   </port>
  </service>
 </definitions>

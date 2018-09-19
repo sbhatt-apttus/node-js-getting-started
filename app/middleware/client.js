@@ -101,17 +101,17 @@
           var soapHeader = {"SessionHeader": sessionID};         
 
 		  soap.createClientAsync(url).then((client) => {
-              console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL1 => ' + url);
-              console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL2 => ' + client);
-              debugger;
+              //console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL1 => ' + url);
+              //console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL2 => ' + client);
+              //debugger;
               return client.updatePriceForCart(args, function(err, result, rawResponse, soapHeader, rawRequest) {
                 // result is a javascript object
                 // rawResponse is the raw xml response string
                 // soapHeader is the response soap header as a javascript object
                 // rawRequest is the raw xml request string
-                console.log(result);
-                console.log(rawResponse);
-                console.log(rawRequest);
+                //console.log(result);
+                //console.log(rawResponse);
+                //console.log(rawRequest);
 				console.log('##########1333dgsdgsdgsgd 4 finalllList=> '+JSON.stringify(result));
 				console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
 				res.send({"finalOUTPUT":finallyyy});                
