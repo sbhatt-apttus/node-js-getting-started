@@ -95,20 +95,9 @@
 
         var finallyyy = false;
 		
-		  var url = './CPQWebService.xml';
+		  var url = 'CPQWebService.xml';
           var args = {"CartId": CartId};
-          var soapHeader = {"SessionHeader": sessionID};   
-          
-          fs.stat('./CPQWebService.xml', function(err, stat) {
-            if(err == null) {
-                console.log('File exists');
-            } else if(err.code == 'ENOENT') {
-                // file does not exist
-                fs.writeFile('log.txt', 'Some log\n');
-            } else {
-                console.log('Some other error: ', err.code);
-            }
-        });         
+          var soapHeader = {"SessionHeader": sessionID};         
 
 		  soap.createClientAsync(url).then((client) => {
               console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL1 => ' + url);
