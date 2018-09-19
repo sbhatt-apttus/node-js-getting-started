@@ -104,7 +104,7 @@
           var args = {"CartId": CartId};
 
           soap.createClientAsync(url,clientOptions).then((client) => {
-            return client.updatePriceForCart(args, function(err, result, rawResponse, soapHeader, rawRequest) {
+            return client.updatePriceForCart(args,null,{"sessionId": "00D2D0000000RqJ!AR8AQLawb76XxCWYonbIw68CXHDnxSHr0nlZ9yJOVpKCof4MucAcrs4J2w_RHBZcVLDkAjvnm8f3DqedBF3oqg0wH6OCFZm."}, function(err, result, rawResponse, soapHeader, rawRequest) {
                 // result is a javascript object
                 // rawResponse is the raw xml response string
                 // soapHeader is the response soap header as a javascript object
