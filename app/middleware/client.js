@@ -98,9 +98,12 @@
           var url = 'CPQWebService.xml';
           
           var args = {"CartId": CartId};
-          var soapHeader = {"SessionHeader": sessionID};         
+          var soapHeader = {"SessionHeader": sessionID}; 
+          var clientOptions = {};
+          clientOptions.wsdl_headers = soapHeader; 
+          clientOptions.endpoint = 'https://box--cpqdata.cs69.my.salesforce.com'; 
 
-		  soap.createClientAsync(url).then((client) => {
+		  soap.createClientAsync(url, clientOptions).then((client) => {
               //console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL1 => ' + url);
               //console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL2 => ' + client);
               //debugger;
