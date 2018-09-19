@@ -99,7 +99,7 @@
 		  var args = {CartId: CartId};
 		  soap.createClient(url, function(err, client) {
 			  console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL => ' + client);
-			  client.MyFunction(args, function(err, result) {
+			  client.updatePriceForCart(args, function(err, result) {
 				  console.log(result);
 				console.log('##########1333dgsdgsdgsgd 4 finalllList=> '+JSON.stringify(result));
 				console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
