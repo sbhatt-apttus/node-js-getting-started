@@ -95,7 +95,7 @@
 
         var finallyyy = false;
           var clientOptions = {};
-          clientOptions.wsdl_headers = {"sessionId": "00D2D0000000RqJ!AR8AQLawb76XxCWYonbIw68CXHDnxSHr0nlZ9yJOVpKCof4MucAcrs4J2w_RHBZcVLDkAjvnm8f3DqedBF3oqg0wH6OCFZm."};
+          clientOptions.wsdl_headers = {"sessionId": "00D2D0000000RqJ!AR8AQI_q8VMXC6rLVBYN2ubGYhfw8GFAv8cu_FpHVJxfuoZfGA544PiWVE_wXLrwDlaS9IC11uKf0gSMx7OMUCWOsIhI4Gw2"};
           clientOptions.endpoint = 'https://cs69.salesforce.com/services/Soap/class/Apttus_CPQApi/CPQWebService';           
           
           var url = 'CPQWebService.xml';
@@ -104,8 +104,8 @@
           var args = {"CartId": CartId};
 
           soap.createClientAsync(url,clientOptions).then((client) => {
-            client.addSoapHeader({"sessionId": "00D2D0000000RqJ!AR8AQLawb76XxCWYonbIw68CXHDnxSHr0nlZ9yJOVpKCof4MucAcrs4J2w_RHBZcVLDkAjvnm8f3DqedBF3oqg0wH6OCFZm."});        
-            return client.updatePriceForCart(args,{},{"sessionId": "00D2D0000000RqJ!AR8AQLawb76XxCWYonbIw68CXHDnxSHr0nlZ9yJOVpKCof4MucAcrs4J2w_RHBZcVLDkAjvnm8f3DqedBF3oqg0wH6OCFZm."}, function(err, result, rawResponse, soapHeader, rawRequest) {
+            client.addSoapHeader({"sessionId": "00D2D0000000RqJ!AR8AQI_q8VMXC6rLVBYN2ubGYhfw8GFAv8cu_FpHVJxfuoZfGA544PiWVE_wXLrwDlaS9IC11uKf0gSMx7OMUCWOsIhI4Gw2"});        
+            return client.updatePriceForCart(args,{},{"sessionId": "00D2D0000000RqJ!AR8AQI_q8VMXC6rLVBYN2ubGYhfw8GFAv8cu_FpHVJxfuoZfGA544PiWVE_wXLrwDlaS9IC11uKf0gSMx7OMUCWOsIhI4Gw2"}, function(err, result, rawResponse, soapHeader, rawRequest) {
                 // result is a javascript object
                 // rawResponse is the raw xml response string
                 // soapHeader is the response soap header as a javascript object
