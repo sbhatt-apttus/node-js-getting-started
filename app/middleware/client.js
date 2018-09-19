@@ -95,7 +95,7 @@
 
         var finallyyy = false;
 		
-		  var url = './public/CPQWebService.xml';
+		  var url = './CPQWebService.xml';
           var args = {"CartId": CartId};
           var soapHeader = {"SessionHeader": sessionID};
 		  soap.createClient(url, function(err, client) {
