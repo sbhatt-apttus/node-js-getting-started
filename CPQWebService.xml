@@ -8,7 +8,7 @@
    <xsd:import namespace="http://soap.sforce.com/schemas/class/Apttus_CPQApi/Criteria"/>
    <xsd:import namespace="http://soap.sforce.com/schemas/class/Apttus_Config2/CustomClass"/>
    <xsd:import namespace="http://soap.sforce.com/schemas/class/Apttus_CPQApi/FeatureSupport"/>
-   <xsd:import namespace="http://soap.sforce.com/schemas/class/Apttus_Config2/Property"/>
+   <xsd:import namespace="http://soap.sforce.com/schemas/class/Apttus_Config2/Property"/>    
    <xsd:complexType name="AbandonCartRequestDO">
     <xsd:sequence>
      <xsd:element name="CartId" minOccurs="0" type="tns:ID" nillable="true"/>
@@ -692,6 +692,56 @@
      <xsd:element name="CartId" minOccurs="0" type="tns:ID" nillable="true"/>
     </xsd:sequence>
    </xsd:complexType>
+   <xsd:element name="updatePriceForCart">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="request" type="AbandonCartResponseDO:UpdatePriceRequestDO" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>  
+   <xsd:element name="AllowFieldTruncationHeader">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="allowFieldTruncation" type="xsd:boolean"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element> 
+
+   <xsd:element name="CallOptions">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="client" type="xsd:string"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>   
+  
+  
+   <xsd:element name="DebuggingHeader">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="categories" minOccurs="0" maxOccurs="unbounded" type="tns:LogInfo"/>
+      <xsd:element name="debugLevel" type="tns:LogType"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>  
+   
+   <xsd:element name="SessionHeader">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="sessionId" type="xsd:string"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>   
+  
+  
+   <xsd:element name="DebuggingInfo">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="debugLog" type="xsd:string"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element> 
+   
   </xsd:schema>
  </types>
  <!-- Message for the header parts -->
