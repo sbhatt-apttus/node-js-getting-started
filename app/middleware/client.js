@@ -95,12 +95,12 @@
 
         var finallyyy = false;
 		
-          var url = 'CPQWebService.xml';
+          /*var url = 'CPQWebService.xml';
           
           var args = {"CartId": CartId};
-          var soapHeader = {"SessionHeader": sessionID}; 
+          //var soapHeader = {"SessionHeader": sessionID}; 
           var clientOptions = {};
-          clientOptions.wsdl_headers = soapHeader; 
+          clientOptions.wsdl_headers = {"SessionHeader": sessionID}; 
           clientOptions.endpoint = 'https://box--cpqdata.cs69.my.salesforce.com'; 
 
 		  soap.createClientAsync(url, clientOptions).then((client) => {
@@ -123,7 +123,22 @@
 
          }).then((result) => {
             console.log(result);
-          });    
+          }); 
+          */  
+
+          var clientOptions = {};
+          clientOptions.wsdl_headers = {"SessionHeader": sessionID}; 
+          clientOptions.endpoint = 'https://box--cpqdata.cs69.my.salesforce.com';           
+          
+          var url = 'CPQWebService.xml';
+          var args = {"CartId": CartId};
+          soap.createClientAsync(url,clientOptions).then((client) => {
+            return client.updatePriceForCart(args);
+          }).then((result) => {
+            console.log(result);
+            res.send({"IsPricePending":finallyyy});  
+          });          
+
 		     
     }
 
