@@ -110,13 +110,14 @@
                 console.log('@@@@@@@@@@@@@ => '+result);
                 //console.log(rawResponse);
                 //console.log(rawRequest);
-				//console.log('##########1333dgsdgsdgsgd 4 finalllList=> '+JSON.stringify(result));
+				console.log('##########1333dgsdgsdgsgd 4!!!!! finalllList=> '+JSON.stringify(result));
 				//console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
 				res.send({"IsPricePending":finallyyy});                
             });
           }).then((result) => {
             console.log('############ => '+result);
-            res.send({"IsPricePending":finallyyy});  
+            console.log('##########1333dgsdgsdgsgd 4%%%%%%%% finalllList=> '+JSON.stringify(result));
+            //res.send({"IsPricePending":finallyyy});  
           });          
 
 		     
