@@ -108,9 +108,7 @@
                 // soapHeader is the response soap header as a javascript object
                 // rawRequest is the raw xml request string
                 console.log('@@@@@@@@@@@@@ client => '+client);
-
-                console.log('##########1333dgsdgsdgsgd 66666!!!!! finalllList=> '+JSON.stringify(client));
-
+                debugger;
                 console.log('@@@@@@@@@@@@@ => _________________________________________');
                 //console.log('@@@@@@@@@@@@@ => '+result);
                 //console.log(rawResponse);
