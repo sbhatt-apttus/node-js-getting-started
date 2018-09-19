@@ -95,7 +95,7 @@
 
         var finallyyy = false;
           var clientOptions = {};
-          clientOptions.wsdl_headers = {"SessionHeader:":{"sessionId": "00D2D0000000RqJ!AR8AQI_q8VMXC6rLVBYN2ubGYhfw8GFAv8cu_FpHVJxfuoZfGA544PiWVE_wXLrwDlaS9IC11uKf0gSMx7OMUCWOsIhI4Gw2"}}; 
+          clientOptions.wsdl_headers = {"SessionHeader:":{"sessionId": "00D2D0000000RqJ!AR8AQLawb76XxCWYonbIw68CXHDnxSHr0nlZ9yJOVpKCof4MucAcrs4J2w_RHBZcVLDkAjvnm8f3DqedBF3oqg0wH6OCFZm."}}; 
           clientOptions.endpoint = 'https://cs69.salesforce.com/services/Soap/class/Apttus_CPQApi/CPQWebService';           
           
           var url = 'CPQWebService.xml';
@@ -104,12 +104,14 @@
           var args = {"CartId": CartId};
 
           soap.createClientAsync(url,clientOptions).then((client) => {
-            return client.updatePriceForCart(args, function(err, result) {
+            return client.updatePriceForCart(args, function(err, result, rawResponse, soapHeader, rawRequest) {
                 // result is a javascript object
                 // rawResponse is the raw xml response string
                 // soapHeader is the response soap header as a javascript object
                 // rawRequest is the raw xml request string
-                console.log('@@@@@@@@@@@@@ client => '+client);
+                console.log('@@@@@@@@@@@@@ soapHeader => '+soapHeader);
+                console.log('@@@@@@@@@@@@@ rawRequest => '+rawRequest);
+
                 debugger;
                 console.log('@@@@@@@@@@@@@ => _________________________________________');
                 //console.log('@@@@@@@@@@@@@ => '+result);
