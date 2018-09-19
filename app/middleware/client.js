@@ -94,20 +94,15 @@
         console.log('########## => CartId => '+CartId);
 
         var finallyyy = false;
-		
-          /*var url = 'CPQWebService.xml';
-          
-          var args = {"CartId": CartId};
-          //var soapHeader = {"SessionHeader": sessionID}; 
           var clientOptions = {};
           clientOptions.wsdl_headers = {"SessionHeader": sessionID}; 
-          clientOptions.endpoint = 'https://box--cpqdata.cs69.my.salesforce.com'; 
+          clientOptions.endpoint = 'https://box--cpqdata.cs69.my.salesforce.com';           
+          
+          var url = 'CPQWebService.xml';
+          var args = {"CartId": CartId};
 
-		  soap.createClientAsync(url, clientOptions).then((client) => {
-              //console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL1 => ' + url);
-              //console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL2 => ' + client);
-              //debugger;
-              return client.updatePriceForCart(args, function(err, result, rawResponse, soapHeader, rawRequest) {
+          soap.createClientAsync(url,clientOptions).then((client) => {
+            return client.updatePriceForCart(args, function(err, result, rawResponse, soapHeader, rawRequest) {
                 // result is a javascript object
                 // rawResponse is the raw xml response string
                 // soapHeader is the response soap header as a javascript object
@@ -117,23 +112,8 @@
                 //console.log(rawRequest);
 				//console.log('##########1333dgsdgsdgsgd 4 finalllList=> '+JSON.stringify(result));
 				//console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
-				res.send({"finalOUTPUT":finallyyy});                
-            });              
-
-
-         }).then((result) => {
-            console.log(result);
-          }); 
-          */  
-
-          var clientOptions = {};
-          clientOptions.wsdl_headers = {"SessionHeader": sessionID}; 
-          clientOptions.endpoint = 'https://box--cpqdata.cs69.my.salesforce.com';           
-          
-          var url = 'CPQWebService.xml';
-          var args = {"CartId": CartId};
-          soap.createClientAsync(url,clientOptions).then((client) => {
-            return client.updatePriceForCart(args);
+				res.send({"IsPricePending":finallyyy});                
+            });
           }).then((result) => {
             console.log(result);
             res.send({"IsPricePending":finallyyy});  
