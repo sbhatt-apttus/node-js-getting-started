@@ -98,12 +98,18 @@
 		  var url = './CPQWebService.xml';
           var args = {"CartId": CartId};
           var soapHeader = {"SessionHeader": sessionID};
-		  soap.createClient(url, function(err, client) {
+
+          soap.createClientAsync(url).then((client) => {
+            return client.MyFunctionAsync(args);
+          }).then((result) => {
+            console.log(result);
+          });       
+
+		  soap.createClientAsync(url).then((client) => {
               console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL1 => ' + url);
-			  console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL2 => ' + err);
-              //console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL2 => ' + client);
+              console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL2 => ' + client);
               debugger;
-              client.updatePriceForCart(args, function(err, result, rawResponse, soapHeader, rawRequest) {
+              return client.updatePriceForCart(args, function(err, result, rawResponse, soapHeader, rawRequest) {
                 // result is a javascript object
                 // rawResponse is the raw xml response string
                 // soapHeader is the response soap header as a javascript object
@@ -117,7 +123,9 @@
             });              
 
 
-		  });
+         }).then((result) => {
+            console.log(result);
+          });    
 		     
     }
 
