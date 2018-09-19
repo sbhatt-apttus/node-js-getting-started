@@ -10,6 +10,8 @@
     var EXPORT_QUERY = '/services/data/v39.0/query/?q=';
     var COBJECT_DESCRIBE_QUERY = '/services/data/v39.0/sobjects/';
 
+    var soap = require('soap');
+
 
     //FINAL BLUKIFY API CALL FOR CUSTOM SETTING RESTORE ( IMPORT /DELETE )
     // INPUT => endPoint,sessionID,List<String> importXml, SOAPAction (IMPORT XML STRING)
@@ -73,6 +75,39 @@
      
     }
 
+
+
+    function doReprice(req, res) {
+        console.log('########## req => '+req);
+        console.log('########## req.body=> '+req.body);
+        console.log('########## JSON.stringify(req.body) => '+JSON.stringify(req.body));
+        
+        console.log('########## => req.body.instanceURL => '+req.body.endPoint);
+        console.log('########## => req.body.sessionID => '+req.body.sessionID);
+        console.log('########## => req.body.CartId => '+req.body.CartId);
+
+    
+        var endPoint = req.body.endPoint;
+        var sessionID = req.body.sessionID;
+        var CartId = req.body.CartId;
+
+        console.log('########## => CartId => '+CartId);
+
+        var finallyyy = false;
+		
+		  var url = './public/CPQWebService';
+		  var args = {CartId: CartId};
+		  soap.createClient(url, function(err, client) {
+			  console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL => ' + client);
+			  client.MyFunction(args, function(err, result) {
+				  console.log(result);
+				console.log('##########1333dgsdgsdgsgd 4 finalllList=> '+JSON.stringify(result));
+				console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
+				res.send({"finalOUTPUT":finallyyy});				  
+			  });
+		  });
+		     
+    }
 
 
 
@@ -481,7 +516,8 @@
         getBeautifyXMLFromJSON:getBeautifyXMLFromJSON,
         getBulkifiedBeautifyXMLFromJSON:getBulkifiedBeautifyXMLFromJSON,
         getBulkified_COBJECT_DESCRIBE:getBulkified_COBJECT_DESCRIBE,
-        doImportAPICall,doImportAPICall
+        doImportAPICall,doImportAPICall,
+        doReprice,doReprice
     };
 
     module.exports = client;

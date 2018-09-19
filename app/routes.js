@@ -19,7 +19,7 @@ module.exports = function(app) {
 	app.post('/api/getBulkifiedBeautifyXMLFromJSON', client.getBulkifiedBeautifyXMLFromJSON);
 	app.post('/api/getBulkified_COBJECT_DESCRIBE', client.getBulkified_COBJECT_DESCRIBE);
 	app.post('/api/doImportAPICall', client.doImportAPICall);
-	
+	app.post('/api/doReprice', client.doReprice);
 	
 
 	

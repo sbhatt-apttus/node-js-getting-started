@@ -6,6 +6,7 @@ var methodOverride = require('method-override');
 var cors 		   = require('cors');
 var vkbeautify        = require('vkbeautify');
 var parseString = require('xml2js').parseString;
+var soap = require('soap');
 
 var port = process.env.PORT || 8090; // set our port
 

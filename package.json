@@ -24,7 +24,8 @@
     "method-override": "~2.0.2",
     "vkbeautify": "^0.99.3",
     "request": "^2.83.0",
-    "xml2js": "0.4.19"
+    "xml2js": "0.4.19",
+    "soap":"0.25.0"
   },
   "devDependencies": {
     "request": "^2.83.0",
