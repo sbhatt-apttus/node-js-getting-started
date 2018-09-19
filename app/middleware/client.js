@@ -113,10 +113,10 @@
                 // soapHeader is the response soap header as a javascript object
                 // rawRequest is the raw xml request string
                 //console.log(result);
-                //console.log(rawResponse);
+                console.log(rawResponse);
                 //console.log(rawRequest);
-				console.log('##########1333dgsdgsdgsgd 4 finalllList=> '+JSON.stringify(result));
-				console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
+				//console.log('##########1333dgsdgsdgsgd 4 finalllList=> '+JSON.stringify(result));
+				//console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
 				res.send({"finalOUTPUT":finallyyy});                
             });              
 
