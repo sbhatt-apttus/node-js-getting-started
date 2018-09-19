@@ -95,7 +95,7 @@
 
         var finallyyy = false;
           var clientOptions = {};
-          clientOptions.wsdl_headers = {"SessionHeader:":{"sessionId": "00D2D0000000RqJ!AR8AQLawb76XxCWYonbIw68CXHDnxSHr0nlZ9yJOVpKCof4MucAcrs4J2w_RHBZcVLDkAjvnm8f3DqedBF3oqg0wH6OCFZm."}}; 
+          clientOptions.wsdl_headers = {"sessionId": "00D2D0000000RqJ!AR8AQLawb76XxCWYonbIw68CXHDnxSHr0nlZ9yJOVpKCof4MucAcrs4J2w_RHBZcVLDkAjvnm8f3DqedBF3oqg0wH6OCFZm."};
           clientOptions.endpoint = 'https://cs69.salesforce.com/services/Soap/class/Apttus_CPQApi/CPQWebService';           
           
           var url = 'CPQWebService.xml';
