@@ -95,10 +95,12 @@
 
         var finallyyy = false;
           var clientOptions = {};
-          clientOptions.wsdl_headers = {"SessionHeader": "00D2D0000000RqJ!AR8AQI_q8VMXC6rLVBYN2ubGYhfw8GFAv8cu_FpHVJxfuoZfGA544PiWVE_wXLrwDlaS9IC11uKf0gSMx7OMUCWOsIhI4Gw2"}; 
+          clientOptions.wsdl_headers = {"sessionId": "00D2D0000000RqJ!AR8AQI_q8VMXC6rLVBYN2ubGYhfw8GFAv8cu_FpHVJxfuoZfGA544PiWVE_wXLrwDlaS9IC11uKf0gSMx7OMUCWOsIhI4Gw2"}; 
           clientOptions.endpoint = 'https://cs69.salesforce.com/services/Soap/class/Apttus_CPQApi/CPQWebService';           
           
           var url = 'CPQWebService.xml';
+          
+          
           var args = {"CartId": CartId};
 
           soap.createClientAsync(url,clientOptions).then((client) => {
