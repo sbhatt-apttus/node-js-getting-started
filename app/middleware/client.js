@@ -11,6 +11,7 @@
     var COBJECT_DESCRIBE_QUERY = '/services/data/v39.0/sobjects/';
 
     var soap = require('soap');
+    var path = require('path'); 
 
 
     //FINAL BLUKIFY API CALL FOR CUSTOM SETTING RESTORE ( IMPORT /DELETE )
@@ -97,13 +98,14 @@
 		
 		  var url = './CPQWebService.xml';
           var args = {"CartId": CartId};
-          var soapHeader = {"SessionHeader": sessionID};
-
-          soap.createClientAsync(url).then((client) => {
-            return client.MyFunctionAsync(args);
-          }).then((result) => {
-            console.log(result);
-          });       
+          var soapHeader = {"SessionHeader": sessionID};   
+          
+          path.exists('./CPQWebService.xml', function(exists) { 
+            if (exists) { 
+              // do something
+              console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL1 => IT IS ');
+            } 
+          });          
 
 		  soap.createClientAsync(url).then((client) => {
               console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL1 => ' + url);
