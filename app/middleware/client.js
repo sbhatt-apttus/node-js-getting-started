@@ -95,8 +95,8 @@
 
         var finallyyy = false;
           var clientOptions = {};
-          clientOptions.wsdl_headers = {"SessionHeader": sessionID}; 
-          clientOptions.endpoint = 'https://box--cpqdata.cs69.my.salesforce.com';           
+          clientOptions.wsdl_headers = {"SessionHeader": "00D2D0000000RqJ!AR8AQLawb76XxCWYonbIw68CXHDnxSHr0nlZ9yJOVpKCof4MucAcrs4J2w_RHBZcVLDkAjvnm8f3DqedBF3oqg0wH6OCFZm."}; 
+          clientOptions.endpoint = 'https://box--CPQData.cs69.my.salesforce.com';           
           
           var url = 'CPQWebService.xml';
           var args = {"CartId": CartId};
