@@ -95,7 +95,7 @@
 
         var finallyyy = false;
 		
-		  var url = './public/CPQWebService';
+		  var url = './public/CPQWebService.xml';
 		  var args = {CartId: CartId};
 		  soap.createClient(url, function(err, client) {
 			  console.log('##########FINALAAAAAAALLL END CALLLLLLLLLLLL => ' + client);
