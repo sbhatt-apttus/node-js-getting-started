@@ -82,12 +82,12 @@
         console.log('########## req.body=> '+req.body);
         console.log('########## JSON.stringify(req.body) => '+JSON.stringify(req.body));
         
-        console.log('########## => req.body.instanceURL => '+req.body.endPoint);
+        console.log('########## => req.body.instanceURL => '+req.body.instanceURL);
         console.log('########## => req.body.sessionID => '+req.body.sessionID);
         console.log('########## => req.body.CartId => '+req.body.CartId);
 
     
-        var endPoint = req.body.endPoint;
+        var endPoint = req.body.instanceURL;
         var sessionID = req.body.sessionID;
         var CartId = req.body.CartId;
 
