@@ -112,14 +112,42 @@
      <xsd:element name="longitude" type="xsd:double"/>
     </xsd:sequence>
    </xsd:complexType>
-   <xsd:element name="makeContact">
+   <xsd:element name="first">
     <xsd:complexType>
      <xsd:sequence>
       <xsd:element name="cartID" type="xsd:string" nillable="true"/>
      </xsd:sequence>
     </xsd:complexType>
    </xsd:element>
-   <xsd:element name="makeContactResponse">
+   <xsd:element name="firstResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="result" type="xsd:boolean" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="second">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="cartID" type="xsd:string" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="secondResponse">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="result" type="xsd:boolean" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="third">
+    <xsd:complexType>
+     <xsd:sequence>
+      <xsd:element name="cartID" type="xsd:string" nillable="true"/>
+     </xsd:sequence>
+    </xsd:complexType>
+   </xsd:element>
+   <xsd:element name="thirdResponse">
     <xsd:complexType>
      <xsd:sequence>
       <xsd:element name="result" type="xsd:boolean" nillable="true"/>
@@ -137,21 +165,69 @@
   <part name="SessionHeader" element="tns:SessionHeader"/>
  </message>
  <!-- Operation Messages -->
- <message name="makeContactRequest">
-  <part element="tns:makeContact" name="parameters"/>
+ <message name="firstRequest">
+  <part element="tns:first" name="parameters"/>
  </message>
- <message name="makeContactResponse">
-  <part element="tns:makeContactResponse" name="parameters"/>
+ <message name="firstResponse">
+  <part element="tns:firstResponse" name="parameters"/>
+ </message>
+ <message name="secondRequest">
+  <part element="tns:second" name="parameters"/>
+ </message>
+ <message name="secondResponse">
+  <part element="tns:secondResponse" name="parameters"/>
+ </message>
+ <message name="thirdRequest">
+  <part element="tns:third" name="parameters"/>
+ </message>
+ <message name="thirdResponse">
+  <part element="tns:thirdResponse" name="parameters"/>
  </message>
  <portType name="MyWebServicePortType">
-  <operation name="makeContact">
-   <input message="tns:makeContactRequest"/>
-   <output message="tns:makeContactResponse"/>
+  <operation name="first">
+   <input message="tns:firstRequest"/>
+   <output message="tns:firstResponse"/>
+  </operation>
+  <operation name="second">
+   <input message="tns:secondRequest"/>
+   <output message="tns:secondResponse"/>
+  </operation>
+  <operation name="third">
+   <input message="tns:thirdRequest"/>
+   <output message="tns:thirdResponse"/>
   </operation>
  </portType>
  <binding name="MyWebServiceBinding" type="tns:MyWebServicePortType">
   <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-  <operation name="makeContact">
+  <operation name="first">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:header use="literal" part="SessionHeader" message="tns:Header"/>
+    <soap:header use="literal" part="CallOptions" message="tns:Header"/>
+    <soap:header use="literal" part="DebuggingHeader" message="tns:Header"/>
+    <soap:header use="literal" part="AllowFieldTruncationHeader" message="tns:Header"/>
+    <soap:body use="literal" parts="parameters"/>
+   </input>
+   <output>
+    <soap:header use="literal" part="DebuggingInfo" message="tns:Header"/>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+  <operation name="second">
+   <soap:operation soapAction=""/>
+   <input>
+    <soap:header use="literal" part="SessionHeader" message="tns:Header"/>
+    <soap:header use="literal" part="CallOptions" message="tns:Header"/>
+    <soap:header use="literal" part="DebuggingHeader" message="tns:Header"/>
+    <soap:header use="literal" part="AllowFieldTruncationHeader" message="tns:Header"/>
+    <soap:body use="literal" parts="parameters"/>
+   </input>
+   <output>
+    <soap:header use="literal" part="DebuggingInfo" message="tns:Header"/>
+    <soap:body use="literal"/>
+   </output>
+  </operation>
+  <operation name="third">
    <soap:operation soapAction=""/>
    <input>
     <soap:header use="literal" part="SessionHeader" message="tns:Header"/>
@@ -169,7 +245,7 @@
  <service name="MyWebServiceService">
   <documentation></documentation>
   <port binding="tns:MyWebServiceBinding" name="MyWebService">
-   <soap:address location="https://na54.salesforce.com/services/Soap/class/MyWebService"/>
+   <soap:address location="https://cs69.salesforce.com/services/Soap/class/MyWebService"/>
   </port>
  </service>
 </definitions>

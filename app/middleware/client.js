@@ -95,17 +95,17 @@
 
         var finallyyy = false;
           var clientOptions = {};
-          clientOptions.wsdl_headers = {"sessionId": "00D2D0000000RqJ!AR8AQCQoej7fQ4jxscQaUxdP83GfSIJY0ECKYsDMTIS19eN88z8pl.DzFXp8HF.sDfm2tlr9Gj5psXLN5TjZS.Ld9P2lUgfu"};
-          clientOptions.endpoint = 'https://na54.salesforce.com/services/Soap/class/MyWebService';           
+          clientOptions.wsdl_headers = {"sessionId": sessionID};
+          clientOptions.endpoint = endPoint;           
           
           var url = 'MyWebService.xml';
           
           
-          var args = {"cartID": "aF62D0000000GvX"};
+          var args = {"cartID": CartId};
 
           soap.createClientAsync(url,clientOptions).then((client) => {
-            client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>https://cs69.salesforce.com</client> </CallOptions> <SessionHeader> <sessionId>00D2D0000000RqJ!AR8AQCQoej7fQ4jxscQaUxdP83GfSIJY0ECKYsDMTIS19eN88z8pl.DzFXp8HF.sDfm2tlr9Gj5psXLN5TjZS.Ld9P2lUgfu</sessionId> </SessionHeader> ");        
-            return client.makeContact(args,{},{"sessionId": "00D2D0000000RqJ!AR8AQCQoej7fQ4jxscQaUxdP83GfSIJY0ECKYsDMTIS19eN88z8pl.DzFXp8HF.sDfm2tlr9Gj5psXLN5TjZS.Ld9P2lUgfu"}, function(err, result, rawResponse, soapHeader, rawRequest) {
+            client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>"+endpoint.split("/services")[0]+"</client> </CallOptions> <SessionHeader> <sessionId>"+sessionID+"</sessionId> </SessionHeader> ");        
+            return client.first(args,{},{"sessionId": sessionID}, function(err, result, rawResponse, soapHeader, rawRequest) {
                 // result is a javascript object
                 // rawResponse is the raw xml response string
                 // soapHeader is the response soap header as a javascript object
