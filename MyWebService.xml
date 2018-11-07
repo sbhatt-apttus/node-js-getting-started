@@ -115,15 +115,14 @@
    <xsd:element name="makeContact">
     <xsd:complexType>
      <xsd:sequence>
-      <xsd:element name="contactLastName" type="xsd:string" nillable="true"/>
-      <xsd:element name="accountID" type="xsd:string" nillable="true"/>
+      <xsd:element name="cartID" type="xsd:string" nillable="true"/>
      </xsd:sequence>
     </xsd:complexType>
    </xsd:element>
    <xsd:element name="makeContactResponse">
     <xsd:complexType>
      <xsd:sequence>
-      <xsd:element name="result" type="tns:ID" nillable="true"/>
+      <xsd:element name="result" type="xsd:boolean" nillable="true"/>
      </xsd:sequence>
     </xsd:complexType>
    </xsd:element>

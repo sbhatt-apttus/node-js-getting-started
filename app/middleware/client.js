@@ -95,16 +95,17 @@
 
         var finallyyy = false;
           var clientOptions = {};
-          clientOptions.wsdl_headers = {"sessionId": "00D0a00000268M3!AQYAQJVLC7Q2P8EbnmnfMtaXopPaqtRtASf.Qk0gWIgEy5T8iDDQ8MnsGrvDxSdDWxNAJujmax1xU51jvvvSpC8jzp7Na6La"};
+          clientOptions.wsdl_headers = {"sessionId": "00D2D0000000RqJ!AR8AQCQoej7fQ4jxscQaUxdP83GfSIJY0ECKYsDMTIS19eN88z8pl.DzFXp8HF.sDfm2tlr9Gj5psXLN5TjZS.Ld9P2lUgfu"};
           clientOptions.endpoint = 'https://na54.salesforce.com/services/Soap/class/MyWebService';           
           
           var url = 'MyWebService.xml';
           
           
-          var args = {"contactLastName": "Bhatt1","accountID": "0010a00001ModeV"};
+          var args = {"cartID": "aF62D0000000GvX"};
 
           soap.createClientAsync(url,clientOptions).then((client) => {
-            client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>https://na54.salesforce.com</client> </CallOptions> <SessionHeader> <sessionId>00D0a00000268M3!AQYAQJVLC7Q2P8EbnmnfMtaXopPaqtRtASf.Qk0gWIgEy5T8iDDQ8MnsGrvDxSdDWxNAJujmax1xU51jvvvSpC8jzp7Na6La</sessionId> </SessionHeader> ");              return client.makeContact(args,{},{"sessionId": "00D0a00000268M3!AQYAQJVLC7Q2P8EbnmnfMtaXopPaqtRtASf.Qk0gWIgEy5T8iDDQ8MnsGrvDxSdDWxNAJujmax1xU51jvvvSpC8jzp7Na6La"}, function(err, result, rawResponse, soapHeader, rawRequest) {
+            client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>https://cs69.salesforce.com</client> </CallOptions> <SessionHeader> <sessionId>00D2D0000000RqJ!AR8AQCQoej7fQ4jxscQaUxdP83GfSIJY0ECKYsDMTIS19eN88z8pl.DzFXp8HF.sDfm2tlr9Gj5psXLN5TjZS.Ld9P2lUgfu</sessionId> </SessionHeader> ");        
+            return client.makeContact(args,{},{"sessionId": "00D2D0000000RqJ!AR8AQCQoej7fQ4jxscQaUxdP83GfSIJY0ECKYsDMTIS19eN88z8pl.DzFXp8HF.sDfm2tlr9Gj5psXLN5TjZS.Ld9P2lUgfu"}, function(err, result, rawResponse, soapHeader, rawRequest) {
                 // result is a javascript object
                 // rawResponse is the raw xml response string
                 // soapHeader is the response soap header as a javascript object
