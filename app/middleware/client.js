@@ -104,7 +104,8 @@
           var args = {"cartID": CartId};
 
           soap.createClientAsync(url,clientOptions).then((client) => {
-            client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>"+endPoint.split("/services")[0]+"</client> </CallOptions> <SessionHeader> <sessionId>"+sessionID+"</sessionId> </SessionHeader> ");             return client.first(args,{},{"sessionId": sessionID}, function(err, result, rawResponse, soapHeader, rawRequest) {
+            client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>"+endPoint.split("/services")[0]+"</client> </CallOptions> <SessionHeader> <sessionId>"+sessionID+"</sessionId> </SessionHeader> ");             
+			return client.first(args,{},{"sessionId": sessionID}, function(err, result, rawResponse, soapHeader, rawRequest) {
                 // result is a javascript object
                 // rawResponse is the raw xml response string
                 // soapHeader is the response soap header as a javascript object
@@ -119,7 +120,95 @@
                 //console.log(rawRequest);
 				console.log('##########1333dgsdgsdgsgd 4!!!!! finalllList=> '+JSON.stringify(result));
 				//console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
-				res.send({"IsPricePending":finallyyy});                
+				
+				
+				  soap.createClientAsync(url,clientOptions).then((client) => {
+					client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>"+endPoint.split("/services")[0]+"</client> </CallOptions> <SessionHeader> <sessionId>"+sessionID+"</sessionId> </SessionHeader> ");             
+					return client.first(args,{},{"sessionId": sessionID}, function(err, result, rawResponse, soapHeader, rawRequest) {
+						// result is a javascript object
+						// rawResponse is the raw xml response string
+						// soapHeader is the response soap header as a javascript object
+						// rawRequest is the raw xml request string
+						console.log('@@@@@@@@@@@@@ soapHeader => '+soapHeader);
+						console.log('@@@@@@@@@@@@@ rawRequest => '+rawRequest);
+
+						debugger;
+						console.log('@@@@@@@@@@@@@ => _________________________________________');
+						//console.log('@@@@@@@@@@@@@ => '+result);
+						//console.log(rawResponse);
+						//console.log(rawRequest);
+						console.log('##########1333dgsdgsdgsgd 4!!!!! finalllList=> '+JSON.stringify(result));
+						//console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
+						
+						
+						  soap.createClientAsync(url,clientOptions).then((client) => {
+							client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>"+endPoint.split("/services")[0]+"</client> </CallOptions> <SessionHeader> <sessionId>"+sessionID+"</sessionId> </SessionHeader> ");             
+							return client.second(args,{},{"sessionId": sessionID}, function(err, result, rawResponse, soapHeader, rawRequest) {
+								// result is a javascript object
+								// rawResponse is the raw xml response string
+								// soapHeader is the response soap header as a javascript object
+								// rawRequest is the raw xml request string
+								console.log('@@@@@@@@@@@@@ soapHeader => '+soapHeader);
+								console.log('@@@@@@@@@@@@@ rawRequest => '+rawRequest);
+
+								debugger;
+								console.log('@@@@@@@@@@@@@ => _________________________________________');
+								//console.log('@@@@@@@@@@@@@ => '+result);
+								//console.log(rawResponse);
+								//console.log(rawRequest);
+								console.log('##########1333dgsdgsdgsgd 4!!!!! finalllList=> '+JSON.stringify(result));
+								//console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
+								
+								
+							  soap.createClientAsync(url,clientOptions).then((client) => {
+								client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>"+endPoint.split("/services")[0]+"</client> </CallOptions> <SessionHeader> <sessionId>"+sessionID+"</sessionId> </SessionHeader> ");             
+								return client.third(args,{},{"sessionId": sessionID}, function(err, result, rawResponse, soapHeader, rawRequest) {
+									// result is a javascript object
+									// rawResponse is the raw xml response string
+									// soapHeader is the response soap header as a javascript object
+									// rawRequest is the raw xml request string
+									console.log('@@@@@@@@@@@@@ soapHeader => '+soapHeader);
+									console.log('@@@@@@@@@@@@@ rawRequest => '+rawRequest);
+
+									debugger;
+									console.log('@@@@@@@@@@@@@ => _________________________________________');
+									//console.log('@@@@@@@@@@@@@ => '+result);
+									//console.log(rawResponse);
+									//console.log(rawRequest);
+									console.log('##########1333dgsdgsdgsgd 4!!!!! finalllList=> '+JSON.stringify(result));
+									//console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
+									res.send({"IsPricePending":finallyyy});                
+								});
+							  }).then((result) => {
+								console.log('############ => '+result);
+								console.log('##########1333dgsdgsdgsgd 4%%%%%%%% finalllList=> '+JSON.stringify(result));
+								//res.send({"IsPricePending":finallyyy});  
+							  });								
+								
+								
+								
+								//res.send({"IsPricePending":finallyyy});                
+							});
+						  }).then((result) => {
+							console.log('############ => '+result);
+							console.log('##########1333dgsdgsdgsgd 4%%%%%%%% finalllList=> '+JSON.stringify(result));
+							//res.send({"IsPricePending":finallyyy});  
+						  });						
+						
+						
+						
+						
+						//res.send({"IsPricePending":finallyyy});                
+					});
+				  }).then((result) => {
+					console.log('############ => '+result);
+					console.log('##########1333dgsdgsdgsgd 4%%%%%%%% finalllList=> '+JSON.stringify(result));
+					//res.send({"IsPricePending":finallyyy});  
+				  });				
+				
+				
+				
+				//res.send({"IsPricePending":finallyyy});                
             });
           }).then((result) => {
             console.log('############ => '+result);
