@@ -263,7 +263,7 @@
                 var res =  999;
                 console.log('callAPI1 @@@@@@@@@@@@@ firstStop => '+firstStop);
                 console.log('callAPI1 @@@@@@@@@@@@@ tracker => '+tracker);
-                
+
                 soap.createClientAsync(url,clientOptions).then((client) => {
                     client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>"+endPoint.split("/services")[0]+"</client> </CallOptions> <SessionHeader> <sessionId>"+sessionID+"</sessionId> </SessionHeader> ");             
                     return client.doCustomPrice1(args,{},{"sessionId": sessionID}, function(err, result, rawResponse, soapHeader, rawRequest) {
@@ -271,9 +271,9 @@
                         // rawResponse is the raw xml response string
                         // soapHeader is the response soap header as a javascript object
                         // rawRequest is the raw xml request string
-                        console.log('callAPI1 @@@@@@@@@@@@@ soapHeader => '+soapHeader);
-                        console.log('callAPI1 @@@@@@@@@@@@@ rawRequest => '+rawRequest);
-                        console.log('callAPI1 @@@@@@@@@@@@@ => _________________________________________');
+                        ///console.log('callAPI1 @@@@@@@@@@@@@ soapHeader => '+soapHeader);
+                        ///console.log('callAPI1 @@@@@@@@@@@@@ rawRequest => '+rawRequest);
+                        ///console.log('callAPI1 @@@@@@@@@@@@@ => _________________________________________');
                         //console.log('@@@@@@@@@@@@@ => '+result);
                         //console.log(rawResponse);
                         //console.log(rawRequest);
@@ -291,14 +291,12 @@
                             //DO REC CALL
                             firstStop = false;
                             console.log('########## firstStop res DO REC CALL => '+res);
-                        } 
-                        if(res == 2 && tracker == 0){
+                        }else if(res == 2 && tracker == 0){
                             //NO REC Call Needed bz it is DONE (NE-CR DONE) 1st TIME
                             firstStop = false;
                             tracker = tracker + 1;
                             console.log('########## firstStop res NO REC Call Needed bz it is DONE (NE-CR DONE) 1st TIME => '+res);
-                        } 
-                        if(res == 2 && tracker == 1){
+                        }else if(res == 2 && tracker == 1){
                             //NO REC Call Needed bz it is DONE (NE-CR DONE) 2nd TIME
                             secondStop = false;
                             tracker = tracker + 1;
@@ -307,13 +305,13 @@
 
                     });
                     }).then((result) => {
-                        console.log('callAPI1 ############ => '+result);
+                        ///console.log('callAPI1 ############ => '+result);
                         console.log('callAPI1 ##########1333dgsdgsdgsgd 4%%%%%%%% finalllList=> '+JSON.stringify(result));
                     });
 
 		   }
 		   
-		   if(i == 0 && secondStop == false && tracker == (repricecount - 1)){
+		   /*if(i == 0 && secondStop == false && tracker == (repricecount - 1)){
 				secondStop = true;
 				//IF response == 99 => ERROR 
 				//IF response == 1 => DO REC Call 
@@ -355,7 +353,7 @@
                   }); 
 
 
-		   }   
+		   }*/   
 		   
 		}
 		while (i = 0); 
