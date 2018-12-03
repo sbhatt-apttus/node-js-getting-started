@@ -259,7 +259,16 @@
 			
 		   if(i == 0 && firstStop == false &&  (tracker < repricecount) ){
 				firstStop = true;
-				var res = callAPI1(CartId,endPoint,sessionID);
+                var res = callAPI1(CartId,endPoint,sessionID);
+
+                callAPI1(CartId,endPoint,sessionID).then((res) => {
+                    console.log('QWE####callAPI1 ############ => '+res);
+                    return 2;
+                }).then((result) => {
+                    console.log('QWE####callAPI1 ############ => '+result);
+                    console.log('QWE####callAPI1 ##########1333dgsdgsdgsgd 4%%%%%%%% finalllList=> ');
+                }); 
+
 				//IF response == 99 => ERROR 
 				//IF response == 1 => REC Call 
 				//IF response == 2 => NO REC Call Needed bz it is DONE (NE-CR DONE)				
