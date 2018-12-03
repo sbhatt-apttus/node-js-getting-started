@@ -277,7 +277,7 @@
                         console.log('callAPI1 ##########1333dgsdgsdgsgd 4!!!!! finalllList=> '+JSON.stringify(result));
                         //console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
 
-                        res == 2;
+                        res = 2;
                         
                         //IF response == 99 => ERROR 
                         //IF response == 1 => REC Call 
