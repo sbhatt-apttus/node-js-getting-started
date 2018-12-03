@@ -112,34 +112,6 @@
      <xsd:element name="longitude" type="xsd:double"/>
     </xsd:sequence>
    </xsd:complexType>
-   <xsd:element name="doCustomPrice1">
-    <xsd:complexType>
-     <xsd:sequence>
-      <xsd:element name="cartID" type="xsd:string" nillable="true"/>
-     </xsd:sequence>
-    </xsd:complexType>
-   </xsd:element>
-   <xsd:element name="doCustomPrice1Response">
-    <xsd:complexType>
-     <xsd:sequence>
-      <xsd:element name="result" type="xsd:int" nillable="true"/>
-     </xsd:sequence>
-    </xsd:complexType>
-   </xsd:element>
-   <xsd:element name="doCustomPrice2">
-    <xsd:complexType>
-     <xsd:sequence>
-      <xsd:element name="cartID" type="xsd:string" nillable="true"/>
-     </xsd:sequence>
-    </xsd:complexType>
-   </xsd:element>
-   <xsd:element name="doCustomPrice2Response">
-    <xsd:complexType>
-     <xsd:sequence>
-      <xsd:element name="result" type="xsd:int" nillable="true"/>
-     </xsd:sequence>
-    </xsd:complexType>
-   </xsd:element>
    <xsd:element name="first">
     <xsd:complexType>
      <xsd:sequence>
@@ -193,18 +165,6 @@
   <part name="SessionHeader" element="tns:SessionHeader"/>
  </message>
  <!-- Operation Messages -->
- <message name="doCustomPrice1Request">
-  <part element="tns:doCustomPrice1" name="parameters"/>
- </message>
- <message name="doCustomPrice1Response">
-  <part element="tns:doCustomPrice1Response" name="parameters"/>
- </message>
- <message name="doCustomPrice2Request">
-  <part element="tns:doCustomPrice2" name="parameters"/>
- </message>
- <message name="doCustomPrice2Response">
-  <part element="tns:doCustomPrice2Response" name="parameters"/>
- </message>
  <message name="firstRequest">
   <part element="tns:first" name="parameters"/>
  </message>
@@ -224,14 +184,6 @@
   <part element="tns:thirdResponse" name="parameters"/>
  </message>
  <portType name="MyWebServicePortType">
-  <operation name="doCustomPrice1">
-   <input message="tns:doCustomPrice1Request"/>
-   <output message="tns:doCustomPrice1Response"/>
-  </operation>
-  <operation name="doCustomPrice2">
-   <input message="tns:doCustomPrice2Request"/>
-   <output message="tns:doCustomPrice2Response"/>
-  </operation>
   <operation name="first">
    <input message="tns:firstRequest"/>
    <output message="tns:firstResponse"/>
@@ -247,34 +199,6 @@
  </portType>
  <binding name="MyWebServiceBinding" type="tns:MyWebServicePortType">
   <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-  <operation name="doCustomPrice1">
-   <soap:operation soapAction=""/>
-   <input>
-    <soap:header use="literal" part="SessionHeader" message="tns:Header"/>
-    <soap:header use="literal" part="CallOptions" message="tns:Header"/>
-    <soap:header use="literal" part="DebuggingHeader" message="tns:Header"/>
-    <soap:header use="literal" part="AllowFieldTruncationHeader" message="tns:Header"/>
-    <soap:body use="literal" parts="parameters"/>
-   </input>
-   <output>
-    <soap:header use="literal" part="DebuggingInfo" message="tns:Header"/>
-    <soap:body use="literal"/>
-   </output>
-  </operation>
-  <operation name="doCustomPrice2">
-   <soap:operation soapAction=""/>
-   <input>
-    <soap:header use="literal" part="SessionHeader" message="tns:Header"/>
-    <soap:header use="literal" part="CallOptions" message="tns:Header"/>
-    <soap:header use="literal" part="DebuggingHeader" message="tns:Header"/>
-    <soap:header use="literal" part="AllowFieldTruncationHeader" message="tns:Header"/>
-    <soap:body use="literal" parts="parameters"/>
-   </input>
-   <output>
-    <soap:header use="literal" part="DebuggingInfo" message="tns:Header"/>
-    <soap:body use="literal"/>
-   </output>
-  </operation>
   <operation name="first">
    <soap:operation soapAction=""/>
    <input>
