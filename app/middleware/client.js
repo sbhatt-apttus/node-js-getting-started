@@ -261,6 +261,9 @@
 				firstStop = true;
                 //var res = callAPI1(CartId,endPoint,sessionID);
                 var res =  999;
+                console.log('callAPI1 @@@@@@@@@@@@@ firstStop => '+firstStop);
+                console.log('callAPI1 @@@@@@@@@@@@@ tracker => '+tracker);
+                
                 soap.createClientAsync(url,clientOptions).then((client) => {
                     client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>"+endPoint.split("/services")[0]+"</client> </CallOptions> <SessionHeader> <sessionId>"+sessionID+"</sessionId> </SessionHeader> ");             
                     return client.doCustomPrice1(args,{},{"sessionId": sessionID}, function(err, result, rawResponse, soapHeader, rawRequest) {
@@ -288,12 +291,14 @@
                             //DO REC CALL
                             firstStop = false;
                             console.log('########## firstStop res DO REC CALL => '+res);
-                        }else if(res == 2 && tracker == 0){
+                        } 
+                        if(res == 2 && tracker == 0){
                             //NO REC Call Needed bz it is DONE (NE-CR DONE) 1st TIME
                             firstStop = false;
                             tracker = tracker + 1;
                             console.log('########## firstStop res NO REC Call Needed bz it is DONE (NE-CR DONE) 1st TIME => '+res);
-                        }else if(res == 2 && tracker == 1){
+                        } 
+                        if(res == 2 && tracker == 1){
                             //NO REC Call Needed bz it is DONE (NE-CR DONE) 2nd TIME
                             secondStop = false;
                             tracker = tracker + 1;
