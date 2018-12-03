@@ -263,6 +263,7 @@
                 var res =  999;
                 console.log('callAPI1 @@@@@@@@@@@@@ firstStop => '+firstStop);
                 console.log('callAPI1 @@@@@@@@@@@@@ tracker => '+tracker);
+                console.log('callAPI1 @@@@@@@@@@@@@ i => '+i);
 
                 soap.createClientAsync(url,clientOptions).then((client) => {
                     client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>"+endPoint.split("/services")[0]+"</client> </CallOptions> <SessionHeader> <sessionId>"+sessionID+"</sessionId> </SessionHeader> ");             
@@ -295,6 +296,7 @@
                             //NO REC Call Needed bz it is DONE (NE-CR DONE) 1st TIME
                             firstStop = false;
                             tracker = tracker + 1;
+                            i = 8;
                             console.log('########## firstStop res NO REC Call Needed bz it is DONE (NE-CR DONE) 1st TIME => '+res);
                         }else if(res == 2 && tracker == 1){
                             //NO REC Call Needed bz it is DONE (NE-CR DONE) 2nd TIME
@@ -356,7 +358,7 @@
 		   }*/   
 		   
 		}
-		while (i == 0); 
+		while (i < 10); 
 
 	     
     }   
