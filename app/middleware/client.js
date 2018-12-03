@@ -260,7 +260,7 @@
 		   if(i == 0 && firstStop == false &&  (tracker < repricecount) ){
 				firstStop = true;
                 //var res = callAPI1(CartId,endPoint,sessionID);
-
+                var res =  999;
                 soap.createClientAsync(url,clientOptions).then((client) => {
                     client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>"+endPoint.split("/services")[0]+"</client> </CallOptions> <SessionHeader> <sessionId>"+sessionID+"</sessionId> </SessionHeader> ");             
                     return client.doCustomPrice1(args,{},{"sessionId": sessionID}, function(err, result, rawResponse, soapHeader, rawRequest) {
@@ -276,12 +276,9 @@
                         //console.log(rawRequest);
                         console.log('callAPI1 ##########1333dgsdgsdgsgd 4!!!!! finalllList=> '+JSON.stringify(result));
                         //console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
-                    });
-                    }).then((result) => {
-                        console.log('callAPI1 ############ => '+result);
-                        console.log('callAPI1 ##########1333dgsdgsdgsgd 4%%%%%%%% finalllList=> '+JSON.stringify(result));
-                        res == 2;
 
+                        res == 2;
+                        
                         //IF response == 99 => ERROR 
                         //IF response == 1 => REC Call 
                         //IF response == 2 => NO REC Call Needed bz it is DONE (NE-CR DONE)	
@@ -304,6 +301,10 @@
                         } 
 
                     });
+                    }).then((result) => {
+                        console.log('callAPI1 ############ => '+result);
+                        console.log('callAPI1 ##########1333dgsdgsdgsgd 4%%%%%%%% finalllList=> '+JSON.stringify(result));
+                    });
 
 		   }
 		   
@@ -312,8 +313,8 @@
 				//IF response == 99 => ERROR 
 				//IF response == 1 => DO REC Call 
 				//IF response == 0 => NO REC Call Needed bz it is DONE				
-                var res2 = callAPI2(CartId,endPoint,sessionID);
-                
+                //var res2 = callAPI2(CartId,endPoint,sessionID);
+                var res2 = 99;
                 soap.createClientAsync(url,clientOptions).then((client) => {
                     client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>"+endPoint.split("/services")[0]+"</client> </CallOptions> <SessionHeader> <sessionId>"+sessionID+"</sessionId> </SessionHeader> ");             
                     return client.doCustomPrice2(args,{},{"sessionId": sessionID}, function(err, result, rawResponse, soapHeader, rawRequest) {
@@ -329,22 +330,22 @@
                         //console.log(rawRequest);
                         console.log('callAPI2 ##########1333dgsdgsdgsgd 4!!!!! finalllList=> '+JSON.stringify(result));
                         //console.log('##########1333dgsdgsdgsgd 4 finallyyy=> '+finallyyy);
+                        res2 = 0;
+                        console.log('########## secondStop res => '+res2);
+                        if(res2 == 1){
+                            //DO REC CALL
+                            secondStop = false;
+                            console.log('########## secondStop res DO REC CALL => '+res);
+                        }else if(res2 == 0){
+                            //NO REC Call Needed bz it is DONE (Reprice DONE) Last TIME
+                            i = 1;
+                            console.log('########## secondStop res NO REC Call Needed bz it is DONE (Reprice DONE) Last TIME => '+res);
+                            res.send({"IsPricePending":true}); 
+                        }                        
                     });
                   }).then((result) => {
                     console.log('callAPI2 ############ => '+result);
                     console.log('callAPI2 ##########1333dgsdgsdgsgd 4%%%%%%%% finalllList=> '+JSON.stringify(result));
-                    res2 = 0;
-                    console.log('########## secondStop res => '+res2);
-                    if(res2 == 1){
-                        //DO REC CALL
-                        secondStop = false;
-                        console.log('########## secondStop res DO REC CALL => '+res);
-                    }else if(res2 == 0){
-                        //NO REC Call Needed bz it is DONE (Reprice DONE) Last TIME
-                        i = 1;
-                        console.log('########## secondStop res NO REC Call Needed bz it is DONE (Reprice DONE) Last TIME => '+res);
-                        res.send({"IsPricePending":true}); 
-                    }
 
                   }); 
 
