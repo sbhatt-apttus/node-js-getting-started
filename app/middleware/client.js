@@ -559,17 +559,17 @@
 								
 							});
 						  }).then((result) => {
-							console.log('############ => '+result.result); 
+							console.log('############ => '+result); 
 						  });						
 						               
 					});
 				  }).then((result) => {
-					console.log('############ => '+result.result); 
+					console.log('############ => '+result); 
 				  });				
 				              
             });
           }).then((result) => {
-            console.log('############ then => '+result.result);
+            console.log('############ then => '+result);
           });          
 
 		     
