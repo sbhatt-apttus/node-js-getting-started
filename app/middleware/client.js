@@ -363,7 +363,7 @@
 	     
     }*/   
 
-    function doReprice(req, res) {
+    /*function doReprice(req, res) {
         console.log('########## req => '+req);
         console.log('########## req.body=> '+req.body);
         console.log('########## JSON.stringify(req.body) => '+JSON.stringify(req.body));
@@ -469,7 +469,7 @@
 								console.log('############ => '+result);
 								console.log('##########1333dgsdgsdgsgd 4%%%%%%%% finalllList=> '+JSON.stringify(result));
 								//res.send({"IsPricePending":finallyyy});  
-							  });*/								
+							  });/								
 								
 								
 								
@@ -500,6 +500,76 @@
             console.log('############ => '+result);
             console.log('##########1333dgsdgsdgsgd 4%%%%%%%% finalllList=> '+JSON.stringify(result));
             //res.send({"IsPricePending":finallyyy});  
+          });          
+
+		     
+    }*/
+
+
+
+    function doReprice(req, res) {
+        console.log('########## req => '+req);
+        console.log('########## req.body=> '+req.body);
+        console.log('########## JSON.stringify(req.body) => '+JSON.stringify(req.body));
+        
+        console.log('########## => req.body.endPoint => '+req.body.endPoint);
+        console.log('########## => req.body.sessionID => '+req.body.sessionID);
+        console.log('########## => req.body.CartId => '+req.body.CartId);
+
+    
+        var endPoint = req.body.endPoint;
+        var sessionID = req.body.sessionID;
+        var CartId = req.body.CartId;
+
+        console.log('########## => CartId => '+CartId);
+
+        var finallyyy = false;
+          var clientOptions = {};
+          clientOptions.wsdl_headers = {"sessionId": sessionID};
+          clientOptions.endpoint = endPoint;           
+          
+          var url = 'MyWebService.xml';
+          
+          
+          var args = {"cartID": CartId};
+
+          soap.createClientAsync(url,clientOptions).then((client) => {
+            client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>"+endPoint.split("/services")[0]+"</client> </CallOptions> <SessionHeader> <sessionId>"+sessionID+"</sessionId> </SessionHeader> ");             
+			return client.doCustomPrice1(args,{},{"sessionId": sessionID}, function(err, result, rawResponse, soapHeader, rawRequest) {
+
+				console.log('doCustomPrice1 1st ##########1333dgsdgsdgsgd 4!!!!! finalllList=> '+JSON.stringify(result));
+				console.log('doCustomPrice1 1st@@@@@@@@@@@@@ => '+result.result);
+				
+				  soap.createClientAsync(url,clientOptions).then((client) => {
+					client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>"+endPoint.split("/services")[0]+"</client> </CallOptions> <SessionHeader> <sessionId>"+sessionID+"</sessionId> </SessionHeader> ");             
+					return client.doCustomPrice1(args,{},{"sessionId": sessionID}, function(err, result, rawResponse, soapHeader, rawRequest) {
+						console.log('doCustomPrice1 2nd @ ##########1333dgsdgsdgsgd 4!!!!! finalllList=> '+JSON.stringify(result));						
+						console.log('doCustomPrice1 2nd @@@@@@@@@@@@@@ result => '+result.result);
+						
+						  soap.createClientAsync(url,clientOptions).then((client) => {
+							client.addSoapHeader("<AllowFieldTruncationHeader> <allowFieldTruncation>true</allowFieldTruncation> </AllowFieldTruncationHeader> <DebuggingHeader><categories> <category>System</category> <level>Debug</level> </categories> <debugLevel>Debugonly</debugLevel> </DebuggingHeader> <CallOptions> <client>"+endPoint.split("/services")[0]+"</client> </CallOptions> <SessionHeader> <sessionId>"+sessionID+"</sessionId> </SessionHeader> ");             
+							return client.doCustomPrice2(args,{},{"sessionId": sessionID}, function(err, result, rawResponse, soapHeader, rawRequest) {
+								console.log('doCustomPrice2 ##########1333dgsdgsdgsgd 4!!!!! finalllList=> '+JSON.stringify(result));
+								console.log('doCustomPrice2 @@@@@@@@@@@@@ => '+result.result);
+								if(result.result == 0){
+									res.send({"IsPricePending":true}); 
+								}else{
+									res.send({"IsPricePending":false}); 
+								}
+								
+							});
+						  }).then((result) => {
+							console.log('############ => '+result.result); 
+						  });						
+						               
+					});
+				  }).then((result) => {
+					console.log('############ => '+result.result); 
+				  });				
+				              
+            });
+          }).then((result) => {
+            console.log('############ then => '+result.result);
           });          
 
 		     
